@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="ddd_rules" title="Ruleset: ddd_rules" total_rules="2">
+  <rule id="ARCH-DDD-001" severity="must" domain="architecture" category="domain_driven_design" status="active">
+    <title>Explicit Definition of Bounded Contexts</title>
+    <statement>Each subsystem must maintain an explicit Bounded Context with its own Ubiquitous Language; domain models must not be shared indiscriminately across contexts.</statement>
+    <rationale>Sharing a single entity class across ingestion, billing, vector indexing, and chat results in an bloated entity with conflicting invariants.</rationale>
+    <implementation_guidance>Define separate models for IngestionDocument (file buffer, extraction metadata) and RagDocument (vector embeddings, chunks, citations).</implementation_guidance>
+    <forbidden>
+      <example>A single giant Document class with 50 optional properties catering to every subsystem.</example>
+    </forbidden>
+    <preferred>
+      <example>Separate DocumentIngestionEntity and RagVectorEntity with explicit boundary mapper.</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-DDD" book_title="Learning Domain-Driven Design" chapter="Chapter 3: Managing Domain Complexity" section="Bounded Context">
+        <evidence_quote>A bounded context is a boundary within a domain where a particular domain model applies... dividing a system into bounded contexts protects against model pollution.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="ARCH-DDD-002" severity="must" domain="architecture" category="domain_driven_design" status="active">
+    <title>Anti-Corruption Layer (ACL) for External Services</title>
+    <statement>Third-party APIs (e.g. Gemini, DeepSeek, S3) must be isolated behind an Anti-Corruption Layer (ACL) that translates vendor payloads into internal domain models.</statement>
+    <rationale>Directly exposing external schemas in application code tightly couples the codebase to third-party vendor contracts, making provider switching or SDK upgrades painful.</rationale>
+    <implementation_guidance>Wrap external clients in adapter classes (e.g., GeminiEmbeddingAdapter) implementing an internal interface (IEmbeddingService).</implementation_guidance>
+    <forbidden>
+      <example>Passing GoogleGenAI.GenerateContentResponse directly through controllers and services.</example>
+    </forbidden>
+    <preferred>
+      <example>interface IEmbeddingService { embed(text: string): Promise&lt;number[]&gt;; }</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-DDD" book_title="Learning Domain-Driven Design" chapter="Chapter 4: Context Mapping" section="Anti-Corruption Layer">
+        <evidence_quote>An anti-corruption layer translates between two bounded contexts or an external system, preventing foreign concepts and models from polluting the internal model.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

@@ -1,0 +1,116 @@
+sources:
+- id: BOOK-ARCH-FUNDAMENTALS
+  title: Fundamentals of Software Architecture, 2nd Edition
+  authors:
+  - Mark Richards
+  - Neal Ford
+  path: D:\04-knowledge-base\Architects\Fundamentals of Software Architecture, 2nd
+    Edition.epub
+  primary_domain: architecture
+- id: BOOK-ARCH-DDD
+  title: Learning Domain-Driven Design
+  authors:
+  - Vlad Khononov
+  path: D:\04-knowledge-base\Architects\Learning Domain-Driven Design.epub
+  primary_domain: architecture
+- id: BOOK-API-WEB
+  title: Design and Build Great Web APIs
+  authors:
+  - Mike Amundsen
+  path: D:\04-knowledge-base\Learning\Design and Build Great Web APIs.epub
+  primary_domain: backend
+- id: BOOK-API-SECURE
+  title: Secure APIs
+  authors:
+  - John Kinsella
+  path: D:\04-knowledge-base\Learning\Secure APIs.epub
+  primary_domain: security
+- id: BOOK-RAG-HANDSON
+  title: Hands-On RAG for Production
+  authors:
+  - Various
+  path: D:\04-knowledge-base\RAG\Hands-On RAG for Production.epub
+  primary_domain: rag
+- id: BOOK-RAG-VECTORDB
+  title: Vector Databases
+  authors:
+  - Various
+  path: D:\04-knowledge-base\RAG\Vector Databases.epub
+  primary_domain: rag
+- id: BOOK-SEC-ALICE-BOB
+  title: Alice and Bob Learn Application Security
+  authors:
+  - Tanya Janca
+  path: D:\04-knowledge-base\Security\Alice and Bob Learn Application Security.epub
+  primary_domain: security
+- id: BOOK-SEC-AI
+  title: Practical AI Security
+  authors:
+  - Various
+  path: D:\04-knowledge-base\Security\Practical AI Security.epub
+  primary_domain: security
+- id: BOOK-TEST-UNIT
+  title: Unit Testing Principles, Practices, and Patterns
+  authors:
+  - Vladimir Khorikov
+  path: D:\04-knowledge-base\Testing\Unit Testing Principles, Practices, and Patterns.epub
+  primary_domain: testing
+- id: BOOK-CLEAN-CODE
+  title: 'Clean Code: A Handbook of Agile Software Craftsmanship'
+  authors:
+  - Robert C. Martin
+  path: D:\04-knowledge-base\Learning\Clean Code, A Handbook of Agile Software Craftsmanship.epub
+  primary_domain: common
+- id: BOOK-FE-NEXTJS
+  title: Real-World Next.js - Second Edition
+  authors:
+  - Michele Riva
+  path: D:\04-knowledge-base\Web-MobileApp&SEO\Real-World Next.js - Second Edition.epub
+  primary_domain: frontend
+- id: BOOK-FE-EFFECTIVE-TS
+  title: Effective TypeScript, 2nd Edition
+  authors:
+  - Dan Vanderkam
+  path: D:\04-knowledge-base\JS_CSS_HTML_\Effective TypeScript, 2nd Edition.epub
+  primary_domain: frontend
+- id: BOOK-FE-REACT-TS
+  title: Learn React with TypeScript - Third Edition
+  authors:
+  - Carl Rippon
+  path: D:\04-knowledge-base\JS_CSS_HTML_\Learn React with TypeScript - Third Edition.epub
+  primary_domain: frontend
+- id: BOOK-UI-DESIGNING-INTERFACES
+  title: Designing Interfaces, 3rd Edition
+  authors:
+  - Jenifer Tidwell
+  - Charles Brewer
+  - Aynne Valencia
+  path: D:\04-knowledge-base\UX UI\Designing Interfaces, 3rd Edition.epub
+  primary_domain: ux-ui
+- id: BOOK-UI-LAWS-OF-UX
+  title: Laws of UX, 2nd Edition
+  authors:
+  - Jon Yablonski
+  path: D:\04-knowledge-base\UX UI\Laws of UX, 2nd Edition.epub
+  primary_domain: ux-ui
+- id: BOOK-TEST-PLAYWRIGHT
+  title: Hands-On Automated Testing with Playwright
+  authors:
+  - Various
+  path: D:\04-knowledge-base\Testing\Hands-On Automated Testing with Playwright.epub
+  primary_domain: testing
+- id: BOOK-SWE-GOOGLE
+  title: Software Engineering at Google
+  authors:
+  - Titus Winters
+  - Tom Manshreck
+  - Hyrum Wright
+  path: D:\04-knowledge-base\Architects\Software Engineering at Google.epub
+  primary_domain: common
+- id: BOOK-DEVOPS-CD
+  title: Continuous Delivery
+  authors:
+  - Jez Humble
+  - David Farley
+  path: D:\04-knowledge-base\CICD,Github&DevOps\Continuous Delivery.epub
+  primary_domain: devops

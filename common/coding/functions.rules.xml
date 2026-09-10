@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="functions_rules" title="Ruleset: functions_rules" total_rules="2">
+  <rule id="CODE-FUN-001" severity="must" domain="common" category="coding" status="active">
+    <title>Single Responsibility Principle (SRP) for Functions</title>
+    <statement>Every function and method must perform a single, well-defined task and operate at a consistent level of abstraction.</statement>
+    <rationale>Functions that mix business decisions with data formatting and low-level I/O are difficult to test, impossible to reuse, and attract bugs during changes.</rationale>
+    <implementation_guidance>If a function contains 'and' in its informal description (e.g. 'parseAndSaveAndNotify'), split it into distinct composed functions.</implementation_guidance>
+    <forbidden>
+      <example>function process(buffer) { /* 200 lines doing regex, embedding, db calls, and emails */ }</example>
+    </forbidden>
+    <preferred>
+      <example>const text = extractText(buffer); const chunks = splitIntoChunks(text); await storeChunks(chunks);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 3: Functions" section="Do One Thing">
+        <evidence_quote>Functions should do one thing. They should do it well. They should do it only. If a function does only those steps that are one level below the stated name, it does one thing.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="CODE-FUN-002" severity="must" domain="common" category="coding" status="active">
+    <title>Small Function Size and Guard Clause Early Returns</title>
+    <statement>Functions should not exceed 40 lines of logic and must use guard clauses (early returns) to maintain a cyclomatic nesting depth of 3 or less.</statement>
+    <rationale>Deeply nested if-else ladders increase cognitive complexity exponentially, leading to missed edge cases and maintenance dread.</rationale>
+    <implementation_guidance>Check preconditions at the top of the function and return immediately on failure. Avoid else blocks after returns.</implementation_guidance>
+    <forbidden>
+      <example>if (user) { if (hasAccess(user)) { ... } else { ... } } else { ... } // Arrow anti-pattern</example>
+    </forbidden>
+    <preferred>
+      <example>if (!user) return null;
+if (!hasAccess(user)) throw new ForbiddenError();
+return execute(user);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 3: Functions" section="Small Functions and Blocks">
+        <evidence_quote>Functions should hardly ever be 20 lines long... the indent level of a function should not be greater than one or two.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

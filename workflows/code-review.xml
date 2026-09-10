@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="WF-REV-001" title="5-Point Code Review Gate Workflow">
+  <gate name="Gate 1: Security &amp; Anti-BOLA">Does every database mutation and query enforce tenantId / userId ownership verification? Are inputs strictly sanitized?</gate>
+  <gate name="Gate 2: Type Safety">Are there zero 'any' casts? Are domain states modeled as Discriminated Unions?</gate>
+  <gate name="Gate 3: Standard Envelopes">Do all API responses conform to the standard Envelope { success, data, error, meta }?</gate>
+  <gate name="Gate 4: Testing &amp; Coverage">Do modified code paths include unit tests with AAA pattern or integration tests?</gate>
+  <gate name="Gate 5: Clean Code &amp; Documentation">Are functions &lt;= 40 lines? Do public APIs have TSDoc comments? Are Conventional Commits used?</gate>
+</workflow>

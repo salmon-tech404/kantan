@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<design_system_index title="Veltrix Design System Standards">
+  <standard id="tokens-colors" file="tokens/colors.tokens.xml" description="Color palette, neutral scales, semantic feedback tokens"/>
+  <standard id="tokens-typography" file="tokens/typography.tokens.xml" description="Font scale, font weights, line heights"/>
+  <standard id="components-dialog" file="components/dialog.rules.xml" description="Destructive dialogs, modal focus traps, and touch targets"/>
+</design_system_index>

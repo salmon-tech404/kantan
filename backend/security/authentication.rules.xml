@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="authentication_rules" title="Ruleset: authentication_rules" total_rules="2">
+  <rule id="SEC-AUTH-001" severity="must" domain="security" category="authentication" status="active">
+    <title>Dual-Token Architecture (15m Memory Access + 7d HttpOnly Cookie Refresh)</title>
+    <statement>JWT access tokens must have a short lifespan (&lt;= 15 minutes) kept in memory, while refresh tokens (7 days) must be stored in an httpOnly, Secure, SameSite=Strict cookie.</statement>
+    <rationale>Storing long-lived tokens in localStorage exposes them to XSS theft. Storing refresh tokens in httpOnly cookies prevents client-side script access.</rationale>
+    <implementation_guidance>Set cookie with { httpOnly: true, secure: true, sameSite: 'strict', path: '/api/v1/auth' } on login.</implementation_guidance>
+    <forbidden>
+      <example>Returning both access and refresh tokens in JSON to be saved in window.localStorage.</example>
+    </forbidden>
+    <preferred>
+      <example>res.cookie('refreshToken', token, { httpOnly: true, secure: true, sameSite: 'strict' });</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 5: Authentication and Authorization" section="Session Management and Cookies">
+        <evidence_quote>Cookies containing session tokens must always have the httpOnly flag set to protect them from XSS theft, and the Secure flag to ensure transmission over HTTPS only.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="SEC-AUTH-002" severity="must" domain="security" category="authentication" status="active">
+    <title>Two-Factor Authentication (2FA) for Sensitive Administrative Operations</title>
+    <statement>Security-sensitive operations (password reset, email change, organization deletion, API key generation) must require step-up MFA verification.</statement>
+    <rationale>If a user's session token is compromised, step-up MFA prevents the attacker from permanently hijacking the account or deleting data.</rationale>
+    <implementation_guidance>Verify TOTP code (otplib) or email OTP before committing credential mutations.</implementation_guidance>
+    <forbidden>
+      <example>Allowing password updates with only an active session and no re-authentication.</example>
+    </forbidden>
+    <preferred>
+      <example>if (!totp.verify({ token, secret })) throw new AppError(401, 'INVALID_2FA', 'Invalid 2FA code');</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 5: Authentication and Authorization" section="Multi-Factor Authentication">
+        <evidence_quote>Multi-Factor Authentication (MFA) requires two or more distinct verification factors, significantly reducing the risk of unauthorized account takeovers.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

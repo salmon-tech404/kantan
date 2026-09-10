@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="dialog_rules" title="Ruleset: dialog_rules" total_rules="2">
+  <rule id="UI-DLG-001" severity="must" domain="ux_ui" category="dialogs" status="active">
+    <title>Focus Trapping and ESC Key Dismissal in Modal Dialogs</title>
+    <statement>Modal dialogs must trap keyboard focus within the dialog container and dismiss immediately upon pressing the Escape key.</statement>
+    <rationale>Without focus trapping, keyboard and screen-reader users tab behind the modal into the backdrop, losing their place and rendering the application unusable.</rationale>
+    <implementation_guidance>Use Radix UI Dialog primitives (shadcn/ui Dialog) which handle focus trapping, ARIA roles, and Escape listener out of the box.</implementation_guidance>
+    <forbidden>
+      <example>Building a custom modal with a raw &lt;div&gt; and fixed positioning without focus trapping.</example>
+    </forbidden>
+    <preferred>
+      <example>&lt;Dialog&gt;&lt;DialogContent&gt;{children}&lt;/DialogContent&gt;&lt;/Dialog&gt; (using Radix primitive)</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-UI-DESIGNING-INTERFACES" book_title="Designing Interfaces, 3rd Edition" chapter="Chapter 8: Actions and Commands" section="Modal Dialogs">
+        <evidence_quote>Modal dialogs require user interaction before returning to the parent window. Focus must be trapped inside the dialog, and Escape should provide a clean cancel.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="UI-DLG-002" severity="must" domain="ux_ui" category="dialogs" status="active">
+    <title>Explicit Two-Step Confirmation for Destructive Actions</title>
+    <statement>Destructive operations (e.g. deleting knowledge bases, revoking keys) must require explicit confirmation with the resource name stated, and default focus must NOT rest on the destructive button.</statement>
+    <rationale>Accidental clicks or pressing Enter immediately upon dialog open can permanently destroy user data if default focus is on the Delete action.</rationale>
+    <implementation_guidance>Style the confirm button in Destructive Red. Focus the Cancel button by default. Require typing the resource name for critical bulk deletes.</implementation_guidance>
+    <forbidden>
+      <example>Using window.confirm('Are you sure?') or auto-focusing the red Delete button on modal open.</example>
+    </forbidden>
+    <preferred>
+      <example>&lt;DestructiveDialog title=&quot;Delete Knowledge Base&quot; targetName={kb.name} onConfirm={deleteKb} /&gt;</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-UI-DESIGNING-INTERFACES" book_title="Designing Interfaces, 3rd Edition" chapter="Chapter 8: Actions and Commands" section="Confirming Destructive Actions">
+        <evidence_quote>For irreversible or destructive operations, require an explicit confirmation step. Clearly state what will be lost and never make the destructive action the default choice.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

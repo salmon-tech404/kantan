@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="accessibility_rules" title="Ruleset: accessibility_rules" total_rules="2">
+  <rule id="UI-A11Y-001" severity="must" domain="ux_ui" category="accessibility" status="active">
+    <title>Semantic HTML and ARIA Labeling on Interactive Elements</title>
+    <statement>Interactive elements must use semantic HTML tags (&lt;button&gt;, &lt;a&gt;, &lt;input&gt;) and provide explicit aria-label attributes when icons lack text labels.</statement>
+    <rationale>Using &lt;div onClick=...&gt; prevents screen readers from announcing elements as interactive and disables keyboard activation via Space and Enter.</rationale>
+    <implementation_guidance>Use &lt;Button size='icon' aria-label='Close Dialog'&gt;&lt;XIcon /&gt;&lt;/Button&gt;.</implementation_guidance>
+    <forbidden>
+      <example>&lt;div onClick={close} className='cursor-pointer'&gt;&lt;XIcon /&gt;&lt;/div&gt; // Inaccessible div button</example>
+    </forbidden>
+    <preferred>
+      <example>&lt;button type='button' aria-label='Close dialog' onClick={close}&gt;&lt;XIcon /&gt;&lt;/button&gt;</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-UI-DESIGNING-INTERFACES" book_title="Designing Interfaces, 3rd Edition" chapter="Chapter 11: UI Systems and Atomic Design" section="Accessibility and Semantic Structure">
+        <evidence_quote>Use native semantic HTML elements whenever possible. They provide built-in keyboard navigation and screen reader semantics that custom div containers lack.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="UI-LAW-002" severity="must" domain="ux_ui" category="accessibility" status="active">
+    <title>Fitts's Law: Minimum Target Size of 44x44px for Interactive Elements</title>
+    <statement>Interactive touch and click targets (buttons, icon buttons, checkboxes) must have an effective hit area of at least 44x44 CSS pixels with adequate spacing.</statement>
+    <rationale>Small, cramped targets increase acquisition time and cause accidental misclicks, particularly on mobile touchscreens or high-DPI displays.</rationale>
+    <implementation_guidance>For small visual icons (16px), add padding or an invisible bounding box to ensure the clickable area reaches at least 44px (min-h-[44px] min-w-[44px]).</implementation_guidance>
+    <forbidden>
+      <example>&lt;button className=&quot;h-4 w-4 p-0&quot;&gt;&lt;XIcon className=&quot;h-4 w-4&quot; /&gt;&lt;/button&gt; // Extremely difficult to click</example>
+    </forbidden>
+    <preferred>
+      <example>&lt;button className=&quot;p-3 min-h-[44px] min-w-[44px] flex items-center justify-center&quot;&gt;&lt;XIcon className=&quot;h-4 w-4&quot; /&gt;&lt;/button&gt;</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-UI-LAWS-OF-UX" book_title="Laws of UX, 2nd Edition" chapter="2. Fitts’s Law" section="Overview">
+        <evidence_quote>The time to acquire a target is a function of the distance to and size of the target. Touch targets should be large enough (at least 44 × 44 pt) and have sufficient spacing.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

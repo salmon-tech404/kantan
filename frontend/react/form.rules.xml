@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="form_rules" title="Ruleset: form_rules" total_rules="1">
+  <rule id="FE-FRM-001" severity="must" domain="frontend" category="forms" status="active">
+    <title>React Hook Form Combined with Zod Schema Resolver</title>
+    <statement>All forms must be managed with React Hook Form and validated against a shared Zod schema using @hookform/resolvers/zod.</statement>
+    <rationale>Manual useState form management causes unnecessary re-renders on every keystroke and leads to duplicate validation logic between client and server.</rationale>
+    <implementation_guidance>useForm({ resolver: zodResolver(schema) }). Disable submit button while formState.isSubmitting is true.</implementation_guidance>
+    <forbidden>
+      <example>Managing 10 separate useState hooks for form inputs with manual regex checks in an onSubmit handler.</example>
+    </forbidden>
+    <preferred>
+      <example>const { register, handleSubmit, formState } = useForm({ resolver: zodResolver(loginSchema) });</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-FE-REACT-TS" book_title="Learn React with TypeScript - Third Edition" chapter="Chapter 8: Form Handling" section="React Hook Form and Validation">
+        <evidence_quote>Using React Hook Form with Zod schemas ensures type-safe forms with minimal re-renders and aligns frontend validation directly with backend contracts.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

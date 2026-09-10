@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="modularity_rules" title="Ruleset: modularity_rules" total_rules="4">
+  <rule id="ARCH-MOD-001" severity="must" domain="architecture" category="modularity" status="active">
+    <title>High Cohesion within Domain Modules</title>
+    <statement>Modules must exhibit high functional cohesion, where all classes, services, and schemas within a module contribute directly to a single well-defined business domain.</statement>
+    <rationale>Low cohesion distributes related business concepts across unrelated folders, increasing cognitive load and causing scattered multi-file edits for a single requirement modification.</rationale>
+    <implementation_guidance>Colocate routes, controllers, services, validation schemas, and types within src/modules/&lt;feature&gt;/.</implementation_guidance>
+    <forbidden>
+      <example>A generic utils/ folder containing chunkDocument(), calculateTax(), and renderNavbar() in the same file.</example>
+    </forbidden>
+    <preferred>
+      <example>src/modules/documents/ containing documents.service.ts, documents.routes.ts, documents.validation.ts, documents.types.ts</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-FUNDAMENTALS" book_title="Fundamentals of Software Architecture, 2nd Edition" chapter="Chapter 3: Modularity" section="Cohesion">
+        <evidence_quote>Cohesion refers to what extent the parts of a module should be contained within the same module. High cohesion means elements are strongly related and focused on a single task.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="ARCH-MOD-002" severity="must" domain="architecture" category="modularity" status="active">
+    <title>Low Coupling and Explicit Module Contracts</title>
+    <statement>Inter-module dependencies must be strictly decoupled and accessed exclusively through exported public service interfaces or event contracts, never reaching into internal sub-paths.</statement>
+    <rationale>Direct deep imports create hidden connascence and fragile coupling, causing internal refactorings of one module to cascade into compilation failures across the codebase.</rationale>
+    <implementation_guidance>Export a single index.ts or clear Service class per module. Never deep-import into internal helpers of another module.</implementation_guidance>
+    <forbidden>
+      <example>import { internalParser } from '@/modules/documents/internal/parsers/pdf-ast';</example>
+    </forbidden>
+    <preferred>
+      <example>import { DocumentService } from '@/modules/documents';</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-FUNDAMENTALS" book_title="Fundamentals of Software Architecture, 2nd Edition" chapter="Chapter 3: Modularity" section="Coupling">
+        <evidence_quote>Coupling measures the degree of interdependence between software modules; low coupling represents a good design that supports high maintainability.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="ARCH-MOD-003" severity="must_not" domain="architecture" category="modularity" status="active">
+    <title>Eliminate Connascence of Execution Order</title>
+    <statement>Public service methods must not require external callers to invoke separate methods in an undocumented chronological sequence to produce a valid domain state.</statement>
+    <rationale>Connascence of Execution forces external callers to understand internal operational mechanics, leading to uninitialized state bugs and race conditions.</rationale>
+    <implementation_guidance>Combine sequential steps into a single atomic method or use Builder/Factory patterns with validated completion.</implementation_guidance>
+    <forbidden>
+      <example>service.upload(); service.parse(); service.embed(); // Caller must remember the exact sequence</example>
+    </forbidden>
+    <preferred>
+      <example>await documentService.uploadAndIndex({ file, metadata });</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-FUNDAMENTALS" book_title="Fundamentals of Software Architecture, 2nd Edition" chapter="Chapter 3: Modularity" section="Connascence">
+        <evidence_quote>Connascence of Execution occurs when the order of execution between multiple components matters. Architects should strive to minimize non-local connascence.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="ARCH-MONO-001" severity="must" domain="architecture" category="modular_monolith" status="active">
+    <title>Modular Monolith Domain-Driven Partitioning</title>
+    <statement>Monolithic backends must partition code by domain/feature boundaries rather than technical layers, encapsulating data schemas, logic, and endpoints together.</statement>
+    <rationale>Domain partitioning allows individual features to evolve independently, maintains high cohesion, and simplifies future extraction into separate services.</rationale>
+    <implementation_guidance>Group code under src/modules/auth/, src/modules/documents/, src/modules/rag/, and src/modules/chat/.</implementation_guidance>
+    <forbidden>
+      <example>src/controllers/ (all controllers), src/services/ (all services) in flat horizontal buckets.</example>
+    </forbidden>
+    <preferred>
+      <example>src/modules/rag/ containing vector services, chunking logic, and similarity query routes.</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-ARCH-FUNDAMENTALS" book_title="Fundamentals of Software Architecture, 2nd Edition" chapter="Chapter 11: The Modular Monolith Architecture Style" section="Partitioning">
+        <evidence_quote>The modular monolith architecture style emphasizes domain partitioning... components are grouped by business domains rather than technical capabilities.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

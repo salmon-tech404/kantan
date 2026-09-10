@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="WF-UI-001" title="Robust React Component Workflow">
+  <step sequence="1" name="Server vs Client Boundary">Keep component as React Server Component (RSC) by default. Add 'use client' only if interactivity/state is required (FE-ARCH-001).</step>
+  <step sequence="2" name="Type &amp; State Modeling">Model internal/external states with Discriminated Unions to make invalid states unrepresentable (FE-TS-002).</step>
+  <step sequence="3" name="5 Mandatory UI States">Implement explicit views for: Initial/Empty, Loading, Error, Partial/Data, and Success (UI-STA-001).</step>
+  <step sequence="4" name="Accessibility &amp; Keyboard Traps">Ensure full ARIA compliance, focus trap for modals, and minimum 48px touch targets (UI-A11Y-001, UI-LAW-002).</step>
+</workflow>

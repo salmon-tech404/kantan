@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="code-review_rules" title="Ruleset: code-review_rules" total_rules="1">
+  <rule id="SWE-REV-001" severity="must" domain="common" category="code_review" status="active">
+    <title>Five-Point Code Review Verification Checklist</title>
+    <statement>Every Pull Request must be audited against 5 criteria before approval: Correctness, Security, Architecture Alignment, Test Coverage, and Readability.</statement>
+    <rationale>Ad-hoc reviews devolve into superficial debates over formatting while critical security vulnerabilities, regression risks, and architectural drift go unnoticed.</rationale>
+    <implementation_guidance>Include a standardized PR template checklist covering all 5 dimensions. Ensure all CI quality gates pass before merge.</implementation_guidance>
+    <forbidden>
+      <example>Merging PRs with 'LGTM' without verifying tests or security boundaries.</example>
+    </forbidden>
+    <preferred>
+      <example>PR checklist verified: [x] Unit/Integration Tests pass [x] No any types [x] Ownership filters verified [x] TSDoc added</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-SWE-GOOGLE" book_title="Software Engineering at Google" chapter="Chapter 9: Code Review" section="What to Look For">
+        <evidence_quote>Code review evaluates design, functionality, complexity, tests, naming, comments, and style. The reviewer should ensure the code improves the codebase overall.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

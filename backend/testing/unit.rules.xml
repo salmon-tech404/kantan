@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="unit_rules" title="Ruleset: unit_rules" total_rules="2">
+  <rule id="TEST-PIL-001" severity="must" domain="testing" category="unit_testing" status="active">
+    <title>The Four Pillars of Unit Test Quality</title>
+    <statement>Every unit test must maximize Protection Against Regressions, Resistance to Refactoring, Fast Feedback, and Maintainability.</statement>
+    <rationale>A test suite that scores poorly on Resistance to Refactoring generates False Positives whenever code is restructured, causing developers to abandon testing.</rationale>
+    <implementation_guidance>Test observable behaviors rather than internal implementation details. If refactoring without changing behavior breaks tests, rewrite the tests.</implementation_guidance>
+    <forbidden>
+      <example>expect(service['privateStep2']).toHaveBeenCalled(); // Fragile test bound to implementation detail</example>
+    </forbidden>
+    <preferred>
+      <example>expect(service.calculateScore(input)).toBe(expectedScore);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 4: The Four Pillars of a Good Unit Test" section="The Four Pillars">
+        <evidence_quote>A good unit test has four foundational attributes: protection against regressions, resistance to refactoring, fast feedback, and maintainability. Resistance to refactoring is non-negotiable.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="TEST-AAA-001" severity="must" domain="testing" category="unit_testing" status="active">
+    <title>Standardized Arrange-Act-Assert (AAA) Test Structure</title>
+    <statement>Every test case must follow the Arrange-Act-Assert (AAA) pattern with clearly separated phases, containing only a single Act invocation.</statement>
+    <rationale>Interweaving setup, multiple acts, and repeated assertions turns tests into confusing multi-step scripts, making it difficult to pinpoint failure causes.</rationale>
+    <implementation_guidance>Structure each test with 3 distinct comment blocks or visual whitespace: // Arrange, // Act, // Assert.</implementation_guidance>
+    <forbidden>
+      <example>const u = makeUser(); auth(u); u.name = 'x'; update(u); expect(u).toBe(...); delete(u); expect(u).toBeNull();</example>
+    </forbidden>
+    <preferred>
+      <example>// Arrange: const user = makeUser();
+// Act: const res = auth(user);
+// Assert: expect(res.token).toBeDefined();</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 3: The Anatomy of a Unit Test" section="The AAA Pattern">
+        <evidence_quote>The AAA pattern provides a uniform structure across all tests in a test suite. It splits a test into three sections: Arrange, Act, and Assert.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

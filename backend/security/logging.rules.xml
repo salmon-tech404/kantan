@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="logging_rules" title="Ruleset: logging_rules" total_rules="1">
+  <rule id="SEC-LOG-001" severity="must" domain="security" category="logging" status="active">
+    <title>Automated PII and Credential Masking in Structured Logs</title>
+    <statement>Structured loggers must automatically sanitize and mask passwords, JWT tokens, API keys, credit cards, and personal identifiable information (PII).</statement>
+    <rationale>Logging sensitive credentials exposes them to developers, log aggregation platforms, and external observability breaches.</rationale>
+    <implementation_guidance>Add a Winston format filter that masks keys matching /(password|token|secret|apiKey|authorization)/i.</implementation_guidance>
+    <forbidden>
+      <example>logger.info('User login payload:', req.body); // Logs raw user password</example>
+    </forbidden>
+    <preferred>
+      <example>winston.format((info) =&gt; { maskSecrets(info); return info; });</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 9: Logging and Monitoring" section="What Not to Log">
+        <evidence_quote>Never log sensitive data such as passwords, session tokens, personal identifiable information (PII), or private encryption keys.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

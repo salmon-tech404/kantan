@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taxonomy version="1.0.0">
+  <task id="backend.api.endpoint" domain="backend">
+    <keywords>
+      <keyword>api</keyword>
+      <keyword>route</keyword>
+      <keyword>controller</keyword>
+      <keyword>endpoint</keyword>
+      <keyword>express</keyword>
+    </keywords>
+  </task>
+  <task id="backend.rag.search" domain="backend">
+    <keywords>
+      <keyword>rag</keyword>
+      <keyword>vector</keyword>
+      <keyword>embedding</keyword>
+      <keyword>chunk</keyword>
+      <keyword>similarity</keyword>
+      <keyword>cosine</keyword>
+    </keywords>
+  </task>
+  <task id="backend.database.mutation" domain="backend">
+    <keywords>
+      <keyword>database</keyword>
+      <keyword>prisma</keyword>
+      <keyword>transaction</keyword>
+      <keyword>migration</keyword>
+      <keyword>query</keyword>
+    </keywords>
+  </task>
+  <task id="frontend.ui.dialog" domain="frontend">
+    <keywords>
+      <keyword>dialog</keyword>
+      <keyword>modal</keyword>
+      <keyword>popup</keyword>
+      <keyword>confirmation</keyword>
+    </keywords>
+  </task>
+  <task id="frontend.ui.component" domain="frontend">
+    <keywords>
+      <keyword>component</keyword>
+      <keyword>button</keyword>
+      <keyword>card</keyword>
+      <keyword>table</keyword>
+      <keyword>layout</keyword>
+    </keywords>
+  </task>
+  <task id="frontend.form.input" domain="frontend">
+    <keywords>
+      <keyword>form</keyword>
+      <keyword>input</keyword>
+      <keyword>validation</keyword>
+      <keyword>submit</keyword>
+    </keywords>
+  </task>
+</taxonomy>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="mocking_rules" title="Ruleset: mocking_rules" total_rules="2">
+  <rule id="TEST-MCK-001" severity="must" domain="testing" category="mocking" status="active">
+    <title>Restrict Mocking to Out-of-Process Unmanaged Dependencies</title>
+    <statement>Only mock external, out-of-process unmanaged dependencies that you do not own (e.g., Gemini API, DeepSeek API, Nodemailer). Do not mock internal classes, helpers, or managed databases.</statement>
+    <rationale>Over-mocking internal classes couples tests to private implementation details, creating brittle tests that break on every refactor without catching real bugs.</rationale>
+    <implementation_guidance>Use real domain classes and in-process collaborators in unit tests. Mock only network boundaries with third-party servers.</implementation_guidance>
+    <forbidden>
+      <example>vi.mock('../utils/math-helper'); // Anti-pattern: mocking internal pure helper function</example>
+    </forbidden>
+    <preferred>
+      <example>const mockGemini = { generateEmbedding: vi.fn().mockResolvedValue([0.1, 0.2]) };</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 5: Mocks and Test Fragility" section="When to Mock">
+        <evidence_quote>Mock only unmanaged dependencies—dependencies with which you communicate through external APIs that you do not control. Never mock internal domain classes or managed dependencies.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+  <rule id="TEST-MCK-002" severity="must_not" domain="testing" category="mocking" status="active">
+    <title>Verify State and Output, Never Interaction Counts on Internals</title>
+    <statement>Tests must not assert internal method invocation counts (e.g. expect(internalHelper).toHaveBeenCalledTimes(1)) on internal components.</statement>
+    <rationale>Asserting how many times internal sub-routines are called binds tests to exact line-by-line coding choices, causing false test failures during refactoring.</rationale>
+    <implementation_guidance>Assert the observable return value or the resulting database/state change.</implementation_guidance>
+    <forbidden>
+      <example>expect(chunker['splitWords']).toHaveBeenCalledTimes(3); // Brittle interaction testing</example>
+    </forbidden>
+    <preferred>
+      <example>const result = chunker.process(text); expect(result).toHaveLength(3);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 5: Mocks and Test Fragility" section="Observable Behavior vs Implementation Details">
+        <evidence_quote>Verifying internal interactions leaks implementation details into tests. Tests should verify observable behavior: the output values and resulting state changes.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

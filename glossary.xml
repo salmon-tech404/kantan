@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glossary project="Veltrix-AI">
+  <term name="Bounded Context">A boundary within a domain where a particular domain model applies.</term>
+  <term name="BOLA">Broken Object Level Authorization: Failure to verify that the requesting user owns the targeted object.</term>
+  <term name="Discriminated Union">A TypeScript union of types with a common literal discriminator property ('status').</term>
+  <term name="Doherty Threshold">Productivity soars when human-computer interaction occurs under 400ms.</term>
+  <term name="Anti-Corruption Layer">An insulating boundary that translates foreign third-party schemas into internal domain models.</term>
+  <term name="Server Component">A React 19 component executed exclusively on the server, generating zero client JS bundle.</term>
+</glossary>

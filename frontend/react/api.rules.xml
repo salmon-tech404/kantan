@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="api_rules" title="Ruleset: api_rules" total_rules="1">
+  <rule id="FE-API-001" severity="must_not" domain="frontend" category="api_layer" status="active">
+    <title>Decoupled API Client Service Layer (No Fetch/Axios in JSX)</title>
+    <statement>UI components must not call axios or fetch directly in JSX event handlers or useEffect hooks; all calls must be encapsulated in typed API service functions.</statement>
+    <rationale>Scattering HTTP client invocations across components makes global error handling, authentication interceptors, retry logic, and testing impossible.</rationale>
+    <implementation_guidance>Export typed functions from features/&lt;feature&gt;/api/ (e.g. getDocuments(): Promise&lt;Document[]&gt;).</implementation_guidance>
+    <forbidden>
+      <example>const res = await axios.get('/api/v1/documents'); // Direct Axios call in button onClick handler</example>
+    </forbidden>
+    <preferred>
+      <example>const data = await documentApi.list(); setDocuments(data);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-FE-REACT-TS" book_title="Learn React with TypeScript - Third Edition" chapter="Chapter 9: Interacting with the Web API" section="Dedicated API Clients">
+        <evidence_quote>Encapsulate HTTP requests in dedicated API modules. Components should consume strongly-typed functions rather than interacting with the network client directly.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

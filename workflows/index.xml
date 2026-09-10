@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflows_index title="Veltrix Standard Operating Workflows">
+  <workflow id="api-creation" file="create-api.xml" description="Step-by-step workflow for implementing safe, production-grade REST APIs"/>
+  <workflow id="component-creation" file="create-component.xml" description="Step-by-step workflow for building accessible, 5-state React components"/>
+  <workflow id="code-review" file="code-review.xml" description="Mandatory quality gate checklist before committing or merging"/>
+</workflows_index>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="testing-strategy_rules" title="Ruleset: testing-strategy_rules" total_rules="1">
+  <rule id="SWE-TST-001" severity="must" domain="common" category="testing" status="active">
+    <title>Hermetic Test Isolation and Explicit Test Sizing</title>
+    <statement>Tests must be explicitly categorized by size (Small/Unit, Medium/Integration, Large/E2E). Small tests must be hermetic, running in-memory with zero disk, network, or external process access.</statement>
+    <rationale>Non-hermetic unit tests that make network calls or rely on external state are flaky, slow down feedback loops, and fail intermittently in CI environments.</rationale>
+    <implementation_guidance>Small tests execute in milliseconds. Medium tests use local database containers. Large tests run full browser workflows.</implementation_guidance>
+    <forbidden>
+      <example>A 'unit test' that makes real HTTP fetch calls to a live external API server.</example>
+    </forbidden>
+    <preferred>
+      <example>Small test: pure math chunking test in Vitest (&lt;10ms). Medium test: Supertest + test database (&lt;500ms).</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-SWE-GOOGLE" book_title="Software Engineering at Google" chapter="11. Testing Overview" section="Test Sizes and Hermeticity">
+        <evidence_quote>Google classifies tests as Small, Medium, and Large. Small tests must be hermetic: no access to network or disk. Hermetic tests are fast, reliable, and deterministic.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

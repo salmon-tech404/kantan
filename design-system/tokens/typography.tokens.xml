@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<typography_tokens font_family="Inter, sans-serif">
+  <token level="display" classes="text-3xl font-bold tracking-tight" description="Page headers, hero metrics"/>
+  <token level="title" classes="text-xl font-semibold" description="Section headers, card titles"/>
+  <token level="body" classes="text-sm font-normal text-slate-700 dark:text-slate-300" description="Standard UI copy, inputs, table cells"/>
+  <token level="caption" classes="text-xs font-medium text-slate-500" description="Timestamps, metadata, helper text"/>
+</typography_tokens>

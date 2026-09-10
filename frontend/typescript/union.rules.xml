@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="union_rules" title="Ruleset: union_rules" total_rules="1">
+  <rule id="FE-TS-002" severity="must" domain="frontend" category="typescript" status="active">
+    <title>Discriminated Unions for Representing State</title>
+    <statement>Asynchronous UI states must be modeled using Discriminated Unions with a common literal discriminator property ('status') to make impossible states unrepresentable.</statement>
+    <rationale>Using independent booleans (isLoading: boolean, isError: boolean, data: T | null) allows contradictory states like { isLoading: true, isError: true }.</rationale>
+    <implementation_guidance>type State = { status: 'idle' } | { status: 'loading' } | { status: 'success'; data: T } | { status: 'error'; error: string };</implementation_guidance>
+    <forbidden>
+      <example>if (isLoading &amp;&amp; !isError &amp;&amp; data) ... // Error-prone boolean permutation checks</example>
+    </forbidden>
+    <preferred>
+      <example>switch (state.status) { case 'loading': return &lt;Skeleton /&gt;; case 'success': return &lt;View data={state.data} /&gt;; }</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-FE-EFFECTIVE-TS" book_title="Effective TypeScript, 2nd Edition" chapter="Chapter 4: Type Design" section="Item 28: Prefer Types That Always Represent Valid States">
+        <evidence_quote>Types that represent valid states make your code easier to write and reduce bugs. Discriminated unions make impossible states unrepresentable.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

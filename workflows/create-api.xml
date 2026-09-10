@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="WF-API-001" title="Secure API Endpoint Implementation Workflow">
+  <step sequence="1" name="Contract &amp; Schema Definition">Define Zod request and response schemas with strict() mode to prevent Mass Assignment (BE-VAL-001, BE-VAL-002).</step>
+  <step sequence="2" name="Route &amp; Middleware Wiring">Register HTTP route with method and plural resource naming, attach Zod validation middleware and Auth guard (BE-API-001, SEC-AUTH-001).</step>
+  <step sequence="3" name="Controller &amp; Service Logic">Implement business logic with Anti-BOLA tenancy filters and transaction isolation for mutations (BE-DB-001, BE-DB-002).</step>
+  <step sequence="4" name="Response Envelope Packaging">Wrap successful data in standard envelope { success: true, data, error: null, meta } (BE-API-002).</step>
+  <step sequence="5" name="Hermetic Testing">Write integration tests against real PostgreSQL test instance with transaction rollback (TEST-INT-001).</step>
+</workflow>

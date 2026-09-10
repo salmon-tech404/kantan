@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="state-boundary_rules" title="Ruleset: state-boundary_rules" total_rules="1">
+  <rule id="FE-STA-001" severity="must" domain="frontend" category="state_management" status="active">
+    <title>Strict State Separation (Server vs Global UI vs Form State)</title>
+    <statement>Frontend state must be strictly partitioned into Server State (caching API data), Global UI State (Zustand: active modal, sidebar), and Form State (React Hook Form).</statement>
+    <rationale>Storing server response arrays in global Zustand stores causes cache invalidation nightmares, stale data, and synchronization bugs.</rationale>
+    <implementation_guidance>Never copy server API response lists into Zustand. Keep Zustand lean for client-only UI flags.</implementation_guidance>
+    <forbidden>
+      <example>Storing documents: Document[] in a global Zustand store and attempting to manually update it on every CRUD operation.</example>
+    </forbidden>
+    <preferred>
+      <example>useUIStore: { isSidebarOpen, activeModalId }; useDocuments: fetches and caches server data via API client.</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-FE-REACT-TS" book_title="Learn React with TypeScript - Third Edition" chapter="Chapter 7: State Management" section="Categorizing State">
+        <evidence_quote>Partition state into server state and client state. Do not manage server data in client global state managers without dedicated caching semantics.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

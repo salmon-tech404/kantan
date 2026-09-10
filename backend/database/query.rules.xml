@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset id="query_rules" title="Ruleset: query_rules" total_rules="1">
+  <rule id="BE-DB-001" severity="must" domain="backend" category="database" status="active">
+    <title>Mandatory Tenant and User Scoping on Database Queries</title>
+    <statement>Every database query retrieving or mutating user-owned resources must include an explicit WHERE userId = :currentUserId or orgId filter.</statement>
+    <rationale>Failing to scope queries to the authenticated user leads directly to Broken Object Level Authorization (BOLA), allowing unauthorized cross-user data access.</rationale>
+    <implementation_guidance>Always inject req.user.id into Service methods and enforce it in Prisma find, update, and vector cosine queries.</implementation_guidance>
+    <forbidden>
+      <example>await prisma.knowledgeBase.findUnique({ where: { id } }); // Missing user ownership verification</example>
+    </forbidden>
+    <preferred>
+      <example>await prisma.knowledgeBase.findFirst({ where: { id, userId: currentUser.id } });</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 6: Authorization and Access Control" section="Object-Level Authorization">
+        <evidence_quote>Access control checks must ensure that the user requesting the resource has legitimate ownership. Scoping queries by user ID prevents unauthorized object access.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+</ruleset>

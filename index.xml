@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index title="Veltrix Engineering Brain - Global Knowledge Router">
+  <entry id="common" path="common/index.xml" description="Universal coding, git, testing, and documentation standards"/>
+  <entry id="backend" path="backend/index.xml" description="Express 5, Prisma 7, pgvector, REST API, and server security standards"/>
+  <entry id="frontend" path="frontend/index.xml" description="Next.js 16, React 19, TypeScript, Tailwind 4, and UI/UX standards"/>
+  <entry id="design-system" path="design-system/index.xml" description="Design tokens, colors, typography, and component standards"/>
+  <entry id="workflows" path="workflows/index.xml" description="Task-oriented workflow routing for Coding Agents"/>
+</index>
