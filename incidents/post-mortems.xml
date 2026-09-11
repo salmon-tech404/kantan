@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<post_mortems_log project="Kantanda Continuous Feedback" version="1.0.0">
+<post_mortems_log project="Kantanda Continuous Feedback" version="2.1.0">
   <incident id="INC-2026-001" severity="CRITICAL" date="2026-08-15">
     <affected_project>Veltrix-AI</affected_project>
     <symptom>High-load document upload caused Redis workers to crash with Out-of-Memory (OOM) errors.</symptom>
     <root_cause>Workers ingested 50MB PDFs directly into memory as whole buffers rather than stream chunking.</root_cause>
     <preventable_by_rule_id>RAG-CHK-001</preventable_by_rule_id>
     <knowledge_feedback>Updated RAG-CHK-001 and added SEC-RAT-001 to enforce streaming file pipelines and maximum 25MB file upload thresholds.</knowledge_feedback>
+  </incident>
+
+  <incident id="INC-2026-002" severity="CRITICAL" date="2026-09-02">
+    <affected_project>Veltrix-AI Payments</affected_project>
+    <symptom>Concurrent wallet withdrawal requests allowed balance to drop below zero (lost update race condition).</symptom>
+    <root_cause>Service verified balance in-memory without row-level locking (SELECT FOR UPDATE) before issuing update statement.</root_cause>
+    <preventable_by_rule_id>BE-DB-002</preventable_by_rule_id>
+    <knowledge_feedback>Established database-concurrency framework requiring pessimistic row-level locking for all financial balance mutations.</knowledge_feedback>
+  </incident>
+
+  <incident id="INC-2026-003" severity="HIGH" date="2026-09-11">
+    <affected_project>Testing-Demo / Kantanda Evaluation</affected_project>
+    <symptom>Pull Request claimed 'Pessimistic Row Locking verified with 15/15 tests passing', but 10 concurrent transfer requests produced a Lost Update bug where 9/10 transfers completed without deducting ledger balances.</symptom>
+    <root_cause>Agent violated TEST-INT-001 by using an InMemoryTransferRepository that merely recorded IDs into an uninspected Set without actual async blocking. The self-audit workflow lacked a check verifying whether concurrency claims were tested on real PostgreSQL engines or merely on fake in-memory doubles.</root_cause>
+    <preventable_by_rule_id>TEST-TRUTH-001</preventable_by_rule_id>
+    <knowledge_feedback>Enacted TEST-TRUTH-001 and TEST-RACE-001; updated Gate 6 in workflows/code-review.xml to forbid declaring concurrency verified unless executed against real PostgreSQL or proven by concurrent Promise.all test assertions.</knowledge_feedback>
   </incident>
 </post_mortems_log>

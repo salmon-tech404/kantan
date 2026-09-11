@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "architecture": "Kantanda Living Cognitive Architecture",
   "summary": {
-    "total_rules": 89,
+    "total_rules": 91,
     "total_tasks": 25,
     "total_frameworks": 4,
-    "total_conflicts": 4,
+    "total_conflicts": 5,
     "total_profiles": 3
   },
   "rules": {
@@ -805,6 +805,34 @@
       "book_title": "Software Engineering at Google",
       "section": "Test Sizes and Hermeticity",
       "evidence_quote": "Google classifies tests as Small, Medium, and Large. Small tests must be hermetic: no access to network or disk. Hermetic tests are fast, reliable, and deterministic.",
+      "adaptation_note": ""
+    },
+    "TEST-TRUTH-001": {
+      "id": "TEST-TRUTH-001",
+      "file": "common/testing/testing-strategy.rules.xml",
+      "domain": "",
+      "category": "",
+      "severity": "must",
+      "title": "Truth-in-Testing: Prohibition of False Concurrency Claims on In-Memory Fakes",
+      "statement": "Pull requests and walkthrough documentation must never claim concurrency locking or race-condition verification based solely on in-memory fake repositories. If a test runs on an in-memory double without real engine locks, the report must state that runtime concurrency is unverified.",
+      "book_id": "BOOK-TEST-UNIT",
+      "book_title": "Unit Testing Principles, Practices, and Patterns",
+      "section": "Integration Testing Databases",
+      "evidence_quote": "Faking or mocking out the database in integration tests is an anti-pattern. You must test against the real database engine because in-memory mocks do not replicate transactional and concurrency semantics.",
+      "adaptation_note": ""
+    },
+    "TEST-RACE-001": {
+      "id": "TEST-RACE-001",
+      "file": "common/testing/testing-strategy.rules.xml",
+      "domain": "",
+      "category": "",
+      "severity": "must",
+      "title": "Mandatory Concurrent Execution Testing for Concurrency and Locking Claims",
+      "statement": "Any code asserting race-condition prevention, optimistic locking, or pessimistic locking must include at least one automated test executing N concurrent requests via Promise.all asserting exact fulfilled/rejected counts and balance invariant preservation.",
+      "book_id": "BOOK-ARCH-FUNDAMENTALS",
+      "book_title": "Fundamentals of Software Architecture, 2nd Edition",
+      "section": "Testing Concurrent Workflows",
+      "evidence_quote": "Transactional concurrency mechanisms must be validated with simulated concurrent load tests that deliberately induce conflict and assert invariant preservation.",
       "adaptation_note": ""
     },
     "DS-BTN-001": {
@@ -1704,6 +1732,11 @@
       "id": "CONF-003",
       "title": "",
       "verdict": ""
+    },
+    "inmemory-vs-distributed-lock": {
+      "id": "inmemory-vs-distributed-lock",
+      "title": "",
+      "verdict": "In-memory promise mutexes are STRICTLY CONFINED to single-process test doubles (Mock/Fake repositories). Production services MUST enforce concurrency at the Database layer (SELECT FOR UPDATE) or Distributed Lock layer (Redis Redlock)."
     },
     "CONF-001": {
       "id": "CONF-001",

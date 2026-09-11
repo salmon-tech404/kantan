@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<decision_framework id="FW-CON-001" title="Database Concurrency and Locking Strategy">
-  <context>Choosing between Optimistic Locking, Pessimistic Locking, and In-Memory Sequencing under concurrent writes.</context>
+<decision_framework id="FW-CON-001" title="Database Concurrency and Locking Strategy" version="2.1.0">
+  <context>Choosing between Optimistic Locking, Pessimistic Locking, and In-Memory Sequencing under concurrent writes, while avoiding the Single-Node Distributed Systems Fallacy.</context>
   <decision_matrix>
     <branch>
       <condition>Low-to-medium contention mutations where conflicts are rare (e.g. editing document title, updating user profile)</condition>
@@ -10,9 +10,15 @@
     </branch>
     <branch>
       <condition>High-contention critical balance/inventory deductions where conflict probability is high (e.g. debiting user credits, reserving ticket)</condition>
-      <recommendation>Pessimistic Row-Level Locking (SELECT ... FOR UPDATE) inside short transaction</recommendation>
+      <recommendation>Pessimistic Row-Level Locking (SELECT ... FOR UPDATE) inside short database transaction</recommendation>
       <trade_offs>Guarantees sequential correctness without retry storms; trade-off: locks database rows, latency spikes if transaction is slow.</trade_offs>
       <anti_pattern>Never hold external network I/O calls (e.g. Stripe, LLM APIs) while holding a pessimistic row lock.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>Multi-pod backend web services deployed behind a Load Balancer (Single-Node Fallacy)</condition>
+      <recommendation>Database-Level Locking (SELECT FOR UPDATE / Serializable) or Distributed Lock (Redis Redlock)</recommendation>
+      <trade_offs>Guarantees cross-instance consistency across all Kubernetes pods; trade-off: slight network latency to DB / Redis.</trade_offs>
+      <anti_pattern>CRITICAL ANTI-PATTERN: Never use an in-memory Node.js Promise Mutex or local Map as a concurrency control mechanism for production multi-instance services. Pod A cannot see Pod B's RAM mutex.</anti_pattern>
     </branch>
     <branch>
       <condition>Ultra-high-frequency real-time event streaming and orderbook matching (MarketStrategies trading terminal, 10,000+ ticks/sec)</condition>
