@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="citation_rules" title="Ruleset: citation_rules" total_rules="1">
-  
-  
+
   <rule id="RAG-CIT-001" severity="must" domain="rag" category="citations" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Verifiable Source Grounding and Citation Metadata</title>
-    
-    
     <statement>Every retrieved chunk injected into the LLM context must carry immutable provenance metadata (documentId, documentTitle, pageNumber, sheetName).</statement>
-    
-    
     <rationale>Enterprise RAG platforms must provide auditability and verifiable citations so users can cross-check AI claims directly against source documents.</rationale>
-    
-    
     <implementation_guidance>Format retrieved chunks in the system prompt with citation tags: [Source: {title}, Page: {page}, Sheet: {sheet}] {content}.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>Concatenating raw text chunks into the prompt with no attribution or origin tracking.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>Injecting '[Source: Contract.pdf, Page 4] The warranty period is 24 months' into the context prompt.</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-RAG-HANDSON" book_title="Hands-On RAG for Production" chapter="Chapter 5: Citations and Grounded Generation" section="Metadata Preservation">
-        
-        
         <evidence_quote>Preserving chunk provenance from extraction through generation is essential for grounded citations, giving users the confidence to verify generated answers.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

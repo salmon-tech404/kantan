@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="formatting_rules" title="Ruleset: formatting_rules" total_rules="1">
-  
-  
+
   <rule id="SWE-STY-001" severity="must" domain="common" category="code_quality" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Automated Formatting and Style Guides as Common Law</title>
-    
-    
     <statement>Code formatting must be entirely delegated to automated deterministic tools (Prettier, ESLint). Style debates must never take place in manual code reviews.</statement>
-    
-    
     <rationale>Human code reviewers wasting time discussing tabs, spaces, semicolons, and trailing commas burns cognitive energy that should be focused on architectural correctness and security.</rationale>
-    
-    
     <implementation_guidance>Enforce prettier --check and eslint in CI. Reject PRs with unformatted code automatically.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>A code review comment: 'Please add a newline between line 14 and 15.'</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>Configuring .prettierrc with singleQuote: true, trailingComma: 'all', and running pre-commit auto-formatting.</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-SWE-GOOGLE" book_title="Software Engineering at Google" chapter="8. Style Guides and Rules" section="Style Guides as Common Law">
-        
-        
         <evidence_quote>The goal of a style guide is to produce consistency across the codebase. Enforce rules automatically using formatters and linters so humans can focus on design.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

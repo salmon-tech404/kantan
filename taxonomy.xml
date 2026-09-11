@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<taxonomy version="2.0.0" total_tasks="25">
+<taxonomy version="2.0.0" total_tasks="28">
   <task id="backend.api.endpoint" domain="backend">
     <keywords>
       <keyword>api</keyword>
@@ -251,6 +251,7 @@
     <rulesets>
       <file>frontend/react/form.rules.xml</file>
       <file>frontend/react/api.rules.xml</file>
+      <file>design-system/components/input.rules.xml</file>
     </rulesets>
   </task>
   <task id="frontend.ui.dialog" domain="frontend">
@@ -283,6 +284,9 @@
       <file>frontend/ux-ui/states.rules.xml</file>
       <file>frontend/ux-ui/accessibility.rules.xml</file>
       <file>frontend/ux-ui/general.rules.xml</file>
+      <file>design-system/components/button.rules.xml</file>
+      <file>design-system/components/table.rules.xml</file>
+      <file>design-system/components/toast.rules.xml</file>
     </rulesets>
   </task>
   <task id="testing.unit" domain="common">
@@ -334,11 +338,19 @@
       <keyword>clean-code</keyword>
       <keyword>adr</keyword>
       <keyword>function-size</keyword>
+      <keyword>formatting</keyword>
+      <keyword>naming</keyword>
+      <keyword>dependency</keyword>
+      <keyword>dependencies</keyword>
     </keywords>
     <rulesets>
       <file>common/coding/functions.rules.xml</file>
+      <file>common/coding/formatting.rules.xml</file>
+      <file>common/coding/naming.rules.xml</file>
       <file>common/git/commit.rules.xml</file>
+      <file>common/git/quality-gates.rules.xml</file>
       <file>common/git/code-review.rules.xml</file>
+      <file>common/security/dependencies.rules.xml</file>
       <file>workflows/code-review.xml</file>
     </rulesets>
   </task>
@@ -353,6 +365,57 @@
     <rulesets>
       <file>common/documentation/adr.rules.xml</file>
       <file>backend/architecture/modularity.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="testing.integration" domain="testing">
+    <keywords>
+      <keyword>integration</keyword>
+      <keyword>test</keyword>
+      <keyword>database</keyword>
+      <keyword>rollback</keyword>
+      <keyword>transaction</keyword>
+      <keyword>supertest</keyword>
+      <keyword>testcontainers</keyword>
+      <keyword>real-db</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/testing/integration.rules.xml</file>
+      <file>backend/database/transaction.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="common.documentation" domain="common">
+    <keywords>
+      <keyword>documentation</keyword>
+      <keyword>tsdoc</keyword>
+      <keyword>jsdoc</keyword>
+      <keyword>comments</keyword>
+      <keyword>docstring</keyword>
+      <keyword>explain</keyword>
+      <keyword>adr</keyword>
+    </keywords>
+    <rulesets>
+      <file>common/documentation/tsdoc.rules.xml</file>
+      <file>common/documentation/comments.rules.xml</file>
+      <file>common/documentation/adr.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="frontend.design_system.tokens" domain="frontend">
+    <keywords>
+      <keyword>token</keyword>
+      <keyword>tokens</keyword>
+      <keyword>color</keyword>
+      <keyword>spacing</keyword>
+      <keyword>typography</keyword>
+      <keyword>elevation</keyword>
+      <keyword>theme</keyword>
+      <keyword>design-system</keyword>
+      <keyword>tailwindcss</keyword>
+    </keywords>
+    <rulesets>
+      <file>design-system/tokens/colors.tokens.xml</file>
+      <file>design-system/tokens/typography.tokens.xml</file>
+      <file>design-system/tokens/spacing.tokens.xml</file>
+      <file>design-system/tokens/elevation.tokens.xml</file>
     </rulesets>
   </task>
 </taxonomy>

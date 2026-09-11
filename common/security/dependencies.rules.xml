@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="dependencies_rules" title="Ruleset: dependencies_rules" total_rules="1">
-  
-  
+
   <rule id="SWE-DEP-001" severity="must" domain="common" category="dependencies" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Deterministic Dependency Pinning and Vulnerability Auditing</title>
-    
-    
     <statement>Package dependencies must be strictly committed with lockfiles (package-lock.json). CI must execute npm audit / security vulnerability scans on every build.</statement>
-    
-    
     <rationale>Unpinned or loose dependency ranges (^1.2.0) allow upstream compromises or breaking sub-dependency releases to break production builds unexpectedly.</rationale>
-    
-    
     <implementation_guidance>Use npm ci in CI pipelines. Run npm audit --audit-level=high in quality gates.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>npm install with wildcards (*) and omitting package-lock.json from version control.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>npm ci (strictly installing exact versions verified by package-lock.json).</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-SWE-GOOGLE" book_title="Software Engineering at Google" chapter="21. Dependency Management" section="Dependency Risk and Pinning">
-        
-        
         <evidence_quote>Dependencies represent an ongoing commitment and risk. Pin exact dependency versions and automate security audits to protect against supply chain vulnerabilities.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

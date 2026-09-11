@@ -3,10 +3,11 @@
   "architecture": "Kantanda Living Cognitive Architecture",
   "summary": {
     "total_rules": 93,
-    "total_tasks": 25,
+    "total_tasks": 28,
     "total_frameworks": 5,
     "total_conflicts": 5,
-    "total_profiles": 3
+    "total_profiles": 3,
+    "total_incidents": 2
   },
   "rules": {
     "BE-ERR-001": {
@@ -1599,7 +1600,8 @@
       ],
       "rulesets": [
         "frontend/react/form.rules.xml",
-        "frontend/react/api.rules.xml"
+        "frontend/react/api.rules.xml",
+        "design-system/components/input.rules.xml"
       ]
     },
     "frontend.ui.dialog": {
@@ -1635,7 +1637,10 @@
       "rulesets": [
         "frontend/ux-ui/states.rules.xml",
         "frontend/ux-ui/accessibility.rules.xml",
-        "frontend/ux-ui/general.rules.xml"
+        "frontend/ux-ui/general.rules.xml",
+        "design-system/components/button.rules.xml",
+        "design-system/components/table.rules.xml",
+        "design-system/components/toast.rules.xml"
       ]
     },
     "testing.unit": {
@@ -1694,12 +1699,20 @@
         "quality-gate",
         "clean-code",
         "adr",
-        "function-size"
+        "function-size",
+        "formatting",
+        "naming",
+        "dependency",
+        "dependencies"
       ],
       "rulesets": [
         "common/coding/functions.rules.xml",
+        "common/coding/formatting.rules.xml",
+        "common/coding/naming.rules.xml",
         "common/git/commit.rules.xml",
+        "common/git/quality-gates.rules.xml",
         "common/git/code-review.rules.xml",
+        "common/security/dependencies.rules.xml",
         "workflows/code-review.xml"
       ]
     },
@@ -1716,6 +1729,63 @@
       "rulesets": [
         "common/documentation/adr.rules.xml",
         "backend/architecture/modularity.rules.xml"
+      ]
+    },
+    "testing.integration": {
+      "id": "testing.integration",
+      "domain": "testing",
+      "keywords": [
+        "integration",
+        "test",
+        "database",
+        "rollback",
+        "transaction",
+        "supertest",
+        "testcontainers",
+        "real-db"
+      ],
+      "rulesets": [
+        "backend/testing/integration.rules.xml",
+        "backend/database/transaction.rules.xml"
+      ]
+    },
+    "common.documentation": {
+      "id": "common.documentation",
+      "domain": "common",
+      "keywords": [
+        "documentation",
+        "tsdoc",
+        "jsdoc",
+        "comments",
+        "docstring",
+        "explain",
+        "adr"
+      ],
+      "rulesets": [
+        "common/documentation/tsdoc.rules.xml",
+        "common/documentation/comments.rules.xml",
+        "common/documentation/adr.rules.xml"
+      ]
+    },
+    "frontend.design_system.tokens": {
+      "id": "frontend.design_system.tokens",
+      "domain": "frontend",
+      "keywords": [
+        "token",
+        "tokens",
+        "color",
+        "spacing",
+        "typography",
+        "elevation",
+        "theme",
+        "design-system",
+        "tailwindcss"
+      ],
+      "rulesets": [
+        "design-system/tokens/colors.tokens.xml",
+        "design-system/tokens/typography.tokens.xml",
+        "design-system/tokens/spacing.tokens.xml",
+        "design-system/tokens/elevation.tokens.xml"
       ]
     }
   },
@@ -1795,5 +1865,26 @@
       "description": ""
     }
   },
-  "incidents": []
+  "incidents": [
+    {
+      "id": "INC-2026-001",
+      "severity": "CRITICAL",
+      "date": "2026-08-15",
+      "affected_project": "Veltrix-AI",
+      "symptom": "High-load document upload caused Redis workers to crash with Out-of-Memory (OOM) errors.",
+      "root_cause": "Workers ingested 50MB PDFs directly into memory as whole buffers rather than stream chunking.",
+      "preventable_by_rule_id": "RAG-CHK-001",
+      "knowledge_feedback": "Updated RAG-CHK-001 and added SEC-RAT-001 to enforce streaming file pipelines and maximum 25MB file upload thresholds."
+    },
+    {
+      "id": "INC-2026-002",
+      "severity": "CRITICAL",
+      "date": "2026-09-02",
+      "affected_project": "Core-Transactions",
+      "symptom": "Concurrent wallet withdrawal requests allowed balance to drop below zero (lost update race condition).",
+      "root_cause": "Service verified balance in-memory without row-level locking (SELECT FOR UPDATE) before issuing update statement.",
+      "preventable_by_rule_id": "BE-DB-002",
+      "knowledge_feedback": "Established database-concurrency framework requiring pessimistic row-level locking for all financial balance mutations."
+    }
+  ]
 }

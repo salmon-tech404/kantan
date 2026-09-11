@@ -13,7 +13,7 @@ L0 ── SOURCE KNOWLEDGE (18 Authoritative Books in D:\04-knowledge-base)
         │
 L1 ── DISTILLED ONTOLOGY (glossary.xml & taxonomy.xml)
         │
-L2 ── ATOMIC RULES (89 XML Rules across Backend, Frontend, Common, Design System)
+L2 ── ATOMIC RULES (93 XML Rules across Backend, Frontend, Common, Design System)
         │
 L3 ── DECISION FRAMEWORKS (Trade-off Matrices for State, Concurrency, Architecture)
         │
@@ -80,15 +80,17 @@ D:\10-kantanda\
 │   ├── tokens/                    # Color scales (Tailwind v4), Typography, Spacing
 │   └── components/                # Button, Input, Table, Toast, Dialog specs
 ├── frameworks/                    # Cognitive Decision Frameworks (Trade-off Matrices)
-│   ├── ddd-boundaries.xml         # CRUD vs Bounded Context vs Event-Driven
-│   ├── state-management.xml      # Server Component vs URL vs Context vs Zustand
-│   ├── database-concurrency.xml  # Optimistic vs Pessimistic vs Atomic Increment
-│   └── testing-strategy.xml      # Unit AAA vs Mock vs Testcontainers
+│   ├── ddd-boundaries.framework.xml        # CRUD vs Bounded Context vs Event-Driven
+│   ├── state-management.framework.xml      # Server Component vs URL vs Context vs Zustand
+│   ├── database-concurrency.framework.xml  # Optimistic vs Pessimistic vs Atomic Increment
+│   ├── testing-strategy.framework.xml      # Unit AAA vs Mock vs Testcontainers
+│   └── idempotency-strategies.framework.xml # Unique DB constraints vs Redis TTL vs Outbox
 ├── conflicts/                     # Resolved Dialectical Conflicts Log
-│   ├── postel-vs-strict-boundary.xml   # Strict API Boundary vs Robust UI Ingestion
-│   ├── dry-vs-bounded-context.xml     # Internal DRY vs Cross-Context Decoupling
-│   ├── immutability-vs-performance.xml # React Immutability vs HFT Mutable Ring Buffer
-│   └── hermetic-mock-vs-real-db.xml    # Pure Logic Mocking vs Real DB Rollback
+│   ├── postel-vs-strict-boundary.xml       # Strict API Boundary vs Robust UI Ingestion
+│   ├── dry-vs-bounded-context.xml         # Internal DRY vs Cross-Context Decoupling
+│   ├── immutability-vs-performance.xml     # React Immutability vs HFT Mutable Ring Buffer
+│   ├── hermetic-mock-vs-real-db.xml        # Pure Logic Mocking vs Real DB Rollback
+│   └── inmemory-vs-distributed-lock.xml    # In-memory promise mutex vs Redis Redlock
 ├── profiles/                      # Context-Aware Project Profiles
 │   ├── veltrix-ai.profile.xml          # Next.js 16 + Express 5 + Prisma 7 + pgvector
 │   ├── market-strategies.profile.xml   # Low-latency trading, in-place mutable ring buffers
@@ -100,14 +102,15 @@ D:\10-kantanda\
 │   ├── template.xml                    # Incident Post-Mortem standard schema
 │   └── post-mortems.xml                # Historical production incidents & rule evolutions
 ├── workflows/                     # Standard Operating Workflows
-│   ├── create-api.xml             # Step-by-step secure API implementation
-│   ├── create-component.xml       # Step-by-step 5-state React component workflow
-│   ├── database-migration.xml     # Zero-downtime database migration workflow
-│   ├── architecture-decision-record.xml # ADR creation workflow
-│   └── code-review.xml            # 5-Gate Review Checklist
+│   ├── create-api.xml                  # Step-by-step secure API implementation
+│   ├── create-component.xml            # Step-by-step 5-state React component workflow
+│   ├── database-migration.xml          # Zero-downtime database migration workflow
+│   ├── create-adr.xml                  # Step-by-step Architectural Decision Record workflow
+│   ├── fix-security-vulnerability.xml  # Security vulnerability triage and fix workflow
+│   └── code-review.xml                 # 6-Gate Review Checklist
 │
 ├── index.xml                      # Global Cognitive Architecture Router
-├── taxonomy.xml                   # 25 Categorized Tasks with direct ruleset mappings
+├── taxonomy.xml                   # 28 Categorized Tasks with direct ruleset mappings
 ├── rule-priority.xml              # Hierarchical Priority Matrix (Security > Correctness > Clean Code)
 ├── glossary.xml                   # 22 Canonical Architectural Terms
 ├── AGENTS.md                      # AI Agent 5-Step Operating Protocol

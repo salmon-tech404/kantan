@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="integration_rules" title="Ruleset: integration_rules" total_rules="1">
-  
-  
+
   <rule id="TEST-INT-001" severity="must" domain="testing" category="integration_testing" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Integration Tests with Real Database State Rollback</title>
-    
-    
     <statement>Integration tests must execute against a real PostgreSQL instance with pgvector enabled, rolling back transactions after each test to ensure state cleanliness.</statement>
-    
-    
     <rationale>In-memory fake databases (SQLite, Mock Prisma) do not support pgvector syntax, JSON operators, or PostgreSQL-specific constraint violations, masking critical production bugs.</rationale>
-    
-    
     <implementation_guidance>Use a dedicated test container or test database. Wrap tests in a rollback transaction or run truncate migrations in beforeEach.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>Mocking the entire PrismaClient object in an integration test.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>await prisma.document.create(...); const res = await request(app).get('/api/v1/documents'); expect(res.status).toBe(200);</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 8: Why Integration Testing?" section="Testing the Database">
-        
-        
         <evidence_quote>Do not mock the database in integration tests. An integration test that uses a mock database is not an integration test; verify queries against a real instance.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

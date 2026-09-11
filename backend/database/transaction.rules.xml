@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="transaction_rules" title="Ruleset: transaction_rules" total_rules="1">
-  
-  
+
   <rule id="BE-DB-002" severity="must" domain="backend" category="database" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Atomic Transactions for Multi-Table Writes</title>
-    
-    
     <statement>All database write operations affecting multiple tables or cascading dependencies must be encapsulated within an atomic transaction.</statement>
-    
-    
     <rationale>If a partial write fails midway (e.g. document created but chunking throws), the database is left in a corrupted, inconsistent state.</rationale>
-    
-    
     <implementation_guidance>Wrap multi-table mutations inside prisma.$transaction(async (tx) =&gt; { ... }).</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>await prisma.document.create(...); await externalService(); await prisma.chunk.createMany(...); // Inconsistent if chunk creation fails</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>await prisma.$transaction(async (tx) =&gt; { await tx.document.create(...); await tx.chunk.createMany(...); });</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-ARCH-FUNDAMENTALS" book_title="Fundamentals of Software Architecture, 2nd Edition" chapter="Chapter 12: Pipeline Architecture Style" section="Transactional Boundaries">
-        
-        
         <evidence_quote>Transactions provide atomicity, consistency, isolation, and durability. Operations that span multiple entities must execute within a unified transactional boundary.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

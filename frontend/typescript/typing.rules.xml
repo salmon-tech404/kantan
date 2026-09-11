@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="typing_rules" title="Ruleset: typing_rules" total_rules="1">
-  
-  
+
   <rule id="FE-TS-001" severity="must_not" domain="frontend" category="typescript" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Strict Zero-Any Policy in TypeScript</title>
-    
-    
     <statement>The 'any' keyword is strictly prohibited in application code. Use unknown, generics, or explicit narrowing types.</statement>
-    
-    
     <rationale>Using 'any' silently disables the TypeScript type checker, propagating unsafety across callers and causing preventable runtime crashes.</rationale>
-    
-    
     <implementation_guidance>Enable @typescript-eslint/no-explicit-any: 'error'. Use type guards (if (typeof x === 'string')) to narrow unknown.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>function parse(input: any): any { return input.name; } // Type-unsafe</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>function parse(input: unknown): string { if (typeof input === 'string') return input; throw new Error(); }</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-FE-EFFECTIVE-TS" book_title="Effective TypeScript, 2nd Edition" chapter="Chapter 1: Getting to Know TypeScript" section="Item 1: Understand the Relationship Between TypeScript and JavaScript">
-        
-        
         <evidence_quote>The any type silences the type checker and your tooling. It undermines confidence in the system and hides bugs until runtime.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

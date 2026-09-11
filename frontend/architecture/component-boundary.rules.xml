@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="component-boundary_rules" title="Ruleset: component-boundary_rules" total_rules="1">
-  
-  
+
   <rule id="FE-ARCH-002" severity="must" domain="frontend" category="architecture" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Colocation of Feature Components and Hooks</title>
-    
-    
     <statement>Components, hooks, api callers, and types specific to a single feature must be colocated under src/features/&lt;feature&gt;/ rather than scattered into global directories.</statement>
-    
-    
     <rationale>Scattering feature code into global components/, hooks/, and types/ creates high coupling and makes features difficult to maintain, delete, or refactor.</rationale>
-    
-    
     <implementation_guidance>Structure code as src/features/chat/ containing ChatWindow.tsx, useChat.ts, chat.api.ts, and chat.types.ts.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>Placing 80 custom hooks in global src/hooks/ and 120 components in global src/components/.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>src/features/documents/components/DocumentCard.tsx, src/features/documents/hooks/useDocuments.ts</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-FE-NEXTJS" book_title="Real-World Next.js - Second Edition" chapter="Chapter 5: Codebase Organization and Best Practices" section="Colocation by Feature">
-        
-        
         <evidence_quote>Colocating components, hooks, and types by feature keeps dependencies localized and simplifies long-term maintenance.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>

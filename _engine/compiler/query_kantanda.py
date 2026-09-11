@@ -17,7 +17,7 @@ def query(prompt):
     prompt_lower = prompt.lower()
     matched_task = None
     best_score = 0
-    
+
     # 1. Match task based on keywords score
     words = prompt_lower.replace(".", " ").replace("-", " ").replace("/", " ").split()
     for tid, task in manifest["tasks"].items():
@@ -31,7 +31,7 @@ def query(prompt):
         if score > best_score:
             best_score = score
             matched_task = task
-            
+
     if not matched_task or best_score == 0:
         if any(w in prompt_lower for w in ["ui", "react", "component", "dialog", "button", "modal"]):
             matched_task = manifest["tasks"].get("frontend.ui.component")
@@ -76,9 +76,29 @@ def query(prompt):
                 if rule.get("adaptation_note"):
                     print(f"    * Adaptation Note: {rule['adaptation_note']}")
 
+    # Check active rules against post-mortem incidents
+    active_rule_ids = set()
+    for rf in matched_task["rulesets"]:
+        for rid, rule in manifest["rules"].items():
+            if rule["file"] == rf:
+                active_rule_ids.add(rid)
+
+    relevant_incidents = [
+        inc for inc in manifest.get("incidents", [])
+        if inc.get("preventable_by_rule_id") in active_rule_ids
+    ]
+
     print("\n🛡️ Dual-Gate Verification Checklist:")
     print("  [ ] Gate 1 (Mechanized Tooling): ESLint / Semgrep (Max 40 lines, zero 'any', anti-BOLA, anti-SSRF)")
-    print("  [ ] Gate 2 (Semantic Self-Audit): Workflows/code-review.xml & check against incidents/post-mortems.xml")
+    print("  [ ] Gate 2 (Semantic Self-Audit): Workflows/code-review.xml")
+    if relevant_incidents:
+        for inc in relevant_incidents:
+            print(f"  ⚠️ HISTORICAL INCIDENT ALERT [{inc['id']} - {inc['severity']}]:")
+            print(f"     Symptom: {inc['symptom']}")
+            print(f"     Root cause: {inc['root_cause']}")
+            print(f"     Preventable by: {inc['preventable_by_rule_id']}")
+    else:
+        print("  [ ] Incident Check: Clear (Zero historical regressions for active rulesets)")
     print("================================================================================")
 
 if __name__ == "__main__":

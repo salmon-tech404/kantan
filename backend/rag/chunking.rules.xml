@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="chunking_rules" title="Ruleset: chunking_rules" total_rules="1">
-  
-  
+
   <rule id="RAG-CHK-001" severity="must" domain="rag" category="chunking" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
     <title>Deterministic Word Window Chunking with Overlap</title>
-    
-    
     <statement>Document text must be chunked into deterministic word windows (500 words) with a mandatory boundary overlap (50 words).</statement>
-    
-    
     <rationale>Without overlap, critical contextual sentences split across chunk boundaries are lost during embedding, destroying retrieval accuracy.</rationale>
-    
-    
     <implementation_guidance>Implement sliding window chunking. Preserve sheet prefixes for Excel rows and page metadata for PDFs.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>Splitting text by raw character length without overlap, cutting words and sentences in half.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>const chunks = chunkText(extractedText, { windowSize: 500, overlap: 50 });</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      
-      
       <source book_id="BOOK-RAG-HANDSON" book_title="Hands-On RAG for Production" chapter="Chapter 3: Chunking Strategies" section="Sliding Window and Boundary Overlap">
-        
-        
         <evidence_quote>Boundary overlap ensures that contextual information spanning chunk boundaries is preserved. A 10% overlap is standard for general prose.</evidence_quote>
-        
-      
       </source>
-      
-    
     </sources>
-    
-  
   </rule>
-  
 
 </ruleset>
