@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project_profile id="veltrix-ai" name="Veltrix-AI Platform" version="1.0.0">
+<project_profile id="veltrix-ai" name="Veltrix-AI Platform" version="2.0.0">
   <architecture>Modular Monolith with RAG pipeline and Next.js App Router</architecture>
   <tech_stack>
     <tech category="Frontend">Next.js 16, React 19, TailwindCSS v4, Zustand, React Hook Form</tech>
@@ -8,11 +8,18 @@
     <tech category="AI / LLM">Google Gemini 2.5 Flash / Pro, text-embedding-004, Vector Cosine Search (&lt;=&gt;)</tech>
     <tech category="Security">JWT Dual Tokens, Zod schema validation, Magic bytes file check, Prompt injection guards</tech>
   </tech_stack>
-  <active_rule_packs>
-    <pack>backend-api-base</pack>
-    <pack>rag-pipeline</pack>
-    <pack>destructive-dialog</pack>
-    <pack>frontend-base</pack>
-    <pack>code-review-gate</pack>
-  </active_rule_packs>
+  <active_tasks>
+    <task_id>backend.api.endpoint</task_id>
+    <task_id>backend.rag.chunking</task_id>
+    <task_id>backend.rag.search</task_id>
+    <task_id>backend.rag.retrieval</task_id>
+    <task_id>backend.security.input</task_id>
+    <task_id>backend.security.ai</task_id>
+    <task_id>frontend.architecture.boundary</task_id>
+    <task_id>frontend.ui.component</task_id>
+    <task_id>governance.code_review</task_id>
+  </active_tasks>
+  <overrides>
+    <policy rule_id="FE-ACT-001" allowed="true">Server Actions are permitted exclusively for Next.js App Router form mutations, with strict client Zod validation before trigger.</policy>
+  </overrides>
 </project_profile>

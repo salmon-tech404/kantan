@@ -1,49 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="states_rules" title="Ruleset: states_rules" total_rules="1">
-  
-  
-  <rule id="UI-STA-001" severity="must" domain="ux_ui" category="states" status="active" version="1.0.0" last_updated="2026-09-11">
-    
-    
+  <rule id="UI-STA-001" severity="must" domain="ux_ui" category="states" status="active" version="2.0.0" last_updated="2026-09-11">
     <title>Mandatory Five-State Component Anatomy</title>
-    
-    
     <statement>Every data-displaying component must explicitly implement all 5 UI states: Empty, Loading/Skeleton, Error (with retry), Success, and Interactive (Hover/Active/Disabled).</statement>
-    
-    
     <rationale>Failing to design for empty and error states creates broken, blank interfaces when network calls fail or when new users have no data.</rationale>
-    
-    
     <implementation_guidance>Provide dedicated sub-components or branches: if (loading) &lt;Skeleton /&gt;; if (error) &lt;ErrorView onRetry={retry} /&gt;; if (empty) &lt;EmptyView /&gt;.</implementation_guidance>
-    
-    
     <forbidden>
-      
-      
       <example>docs.map(...) directly with no check for docs.length === 0 or error states, rendering an empty white box.</example>
-      
-    
     </forbidden>
-    
-    
     <preferred>
-      
-      
       <example>&lt;DocumentList items={docs} renderEmpty={&lt;EmptyUploadPrompt /&gt;} /&gt;</example>
-      
-    
     </preferred>
-    
-    
     <sources>
-      <source book_id="ARCH-UI-STATES" book_title="Component-Driven Architecture (Brad Frost &amp; Vince Speelman)" chapter="UI Architecture: The Anatomy of Five UI States" section="Ideal, Empty, Loading, Error, and Partial States">
-        <evidence_quote>A component design is incomplete until all five states have been designed: ideal state, empty state, loading state, error state, and partial state.</evidence_quote>
-      </source>
       <source book_id="BOOK-UI-DESIGNING-INTERFACES" book_title="Designing Interfaces, 3rd Edition" chapter="Chapter 7: Showing Complex Data and Feedback" section="Progress Indicators and Responsive Feedback">
         <evidence_quote>Every asynchronous view must provide immediate, responsive visual feedback indicating system status, loading transitions, and actionable error conditions.</evidence_quote>
       </source>
     </sources>
   </rule>
-  
-
 </ruleset>

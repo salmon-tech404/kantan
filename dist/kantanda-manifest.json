@@ -1305,10 +1305,10 @@
       "severity": "must",
       "title": "Mandatory Five-State Component Anatomy",
       "statement": "Every data-displaying component must explicitly implement all 5 UI states: Empty, Loading/Skeleton, Error (with retry), Success, and Interactive (Hover/Active/Disabled).",
-      "book_id": "ARCH-UI-STATES",
-      "book_title": "Component-Driven Architecture (Brad Frost & Vince Speelman)",
-      "section": "Ideal, Empty, Loading, Error, and Partial States",
-      "evidence_quote": "A component design is incomplete until all five states have been designed: ideal state, empty state, loading state, error state, and partial state.",
+      "book_id": "BOOK-UI-DESIGNING-INTERFACES",
+      "book_title": "Designing Interfaces, 3rd Edition",
+      "section": "Progress Indicators and Responsive Feedback",
+      "evidence_quote": "Every asynchronous view must provide immediate, responsive visual feedback indicating system status, loading transitions, and actionable error conditions.",
       "adaptation_note": ""
     }
   },
