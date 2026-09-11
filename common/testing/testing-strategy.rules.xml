@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ruleset id="testing-strategy_rules" title="Ruleset: testing-strategy_rules" total_rules="3">
+<ruleset id="testing-strategy_rules" title="Ruleset: testing-strategy_rules" total_rules="4">
   <rule id="SWE-TST-001" severity="must" domain="common" category="testing" status="active" version="1.0.0" last_updated="2026-09-11">
     <title>Hermetic Test Isolation and Explicit Test Sizing</title>
     <statement>Tests must be explicitly categorized by size (Small/Unit, Medium/Integration, Large/E2E). Small tests must be hermetic, running in-memory with zero disk, network, or external process access.</statement>
@@ -53,4 +53,22 @@
       </source>
     </sources>
   </rule>
+  <rule id="TEST-IDEM-001" severity="must" domain="common" category="testing" status="active" version="2.0.0" last_updated="2026-09-11">
+    <title>Mandatory Behavioral Idempotency Deduplication Testing</title>
+    <statement>Any endpoint or service accepting an Idempotency-Key must include at least one automated test executing two consecutive requests with the identical key, asserting that the second call returns the original result without secondary balance or state mutations.</statement>
+    <rationale>Unit tests that merely verify Zod schema validation pass falsely while leaving the actual deduplication logic completely unimplemented. Behavioral double-call tests are mandatory to guarantee double-spend prevention.</rationale>
+    <implementation_guidance>Issue transfer request with idempotencyKey 'key-1'. Verify balance deducted once. Issue identical request with 'key-1'. Assert HTTP 200, identical transaction reference, and assert source balance remained unchanged.</implementation_guidance>
+    <forbidden>
+      <example>Only testing that Zod schema rejects malformed UUID idempotency keys without testing duplicate call behavior.</example>
+    </forbidden>
+    <preferred>
+      <example>await service.transfer(dto); const res2 = await service.transfer(dto); expect(account.balance).toBe(initialBalance - dto.amount);</example>
+    </preferred>
+    <sources>
+      <source book_id="BOOK-TEST-UNIT" book_title="Unit Testing Principles, Practices, and Patterns" chapter="Chapter 4: The Four Pillars of Unit Testing" section="Protection Against Regressions">
+        <evidence_quote>Tests must verify observable business behavior, not implementation details. For idempotent endpoints, the observable behavior is that multiple identical requests produce the exact same system state as a single request.</evidence_quote>
+      </source>
+    </sources>
+  </rule>
+
 </ruleset>

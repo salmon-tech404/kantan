@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "architecture": "Kantanda Living Cognitive Architecture",
   "summary": {
-    "total_rules": 91,
+    "total_rules": 93,
     "total_tasks": 25,
-    "total_frameworks": 4,
+    "total_frameworks": 5,
     "total_conflicts": 5,
     "total_profiles": 3
   },
@@ -91,6 +91,20 @@
       "book_title": "Secure APIs",
       "section": "Section 4.6.1: Mass Assignment Prevention",
       "evidence_quote": "Mass assignment occurs when a client binds HTTP request parameters directly into data objects. Strict schemas must disallow unexpected properties.",
+      "adaptation_note": ""
+    },
+    "BE-IDEM-001": {
+      "id": "BE-IDEM-001",
+      "file": "backend/api/validation.rules.xml",
+      "domain": "",
+      "category": "",
+      "severity": "must",
+      "title": "Active Idempotency Deduplication Execution",
+      "statement": "Endpoints receiving mutation requests with an Idempotency-Key must actively query for existing records using fast-path caching or double-checked locking inside database transactions, returning the cached result (HTTP 200) instead of re-executing mutations. Validating and storing the key without duplicate querying is strictly forbidden as decorative security.",
+      "book_id": "BOOK-API-WEB",
+      "book_title": "Design and Build Great Web APIs",
+      "section": "Section 8.4: Idempotency Keys",
+      "evidence_quote": "An idempotency key allows clients to safely retry requests without fear of performing the same operation twice. The server must check for the presence of the key in prior transactions before executing state modifications.",
       "adaptation_note": ""
     },
     "ARCH-DDD-001": {
@@ -833,6 +847,20 @@
       "book_title": "Fundamentals of Software Architecture, 2nd Edition",
       "section": "Testing Concurrent Workflows",
       "evidence_quote": "Transactional concurrency mechanisms must be validated with simulated concurrent load tests that deliberately induce conflict and assert invariant preservation.",
+      "adaptation_note": ""
+    },
+    "TEST-IDEM-001": {
+      "id": "TEST-IDEM-001",
+      "file": "common/testing/testing-strategy.rules.xml",
+      "domain": "",
+      "category": "",
+      "severity": "must",
+      "title": "Mandatory Behavioral Idempotency Deduplication Testing",
+      "statement": "Any endpoint or service accepting an Idempotency-Key must include at least one automated test executing two consecutive requests with the identical key, asserting that the second call returns the original result without secondary balance or state mutations.",
+      "book_id": "BOOK-TEST-UNIT",
+      "book_title": "Unit Testing Principles, Practices, and Patterns",
+      "section": "Protection Against Regressions",
+      "evidence_quote": "Tests must verify observable business behavior, not implementation details. For idempotent endpoints, the observable behavior is that multiple identical requests produce the exact same system state as a single request.",
       "adaptation_note": ""
     },
     "DS-BTN-001": {
@@ -1700,6 +1728,12 @@
     },
     "FW-ARCH-001": {
       "id": "FW-ARCH-001",
+      "domain": "",
+      "title": "",
+      "problem": ""
+    },
+    "FW-IDEM-001": {
+      "id": "FW-IDEM-001",
       "domain": "",
       "title": "",
       "problem": ""

@@ -23,4 +23,11 @@
     <preventable_by_rule_id>TEST-TRUTH-001</preventable_by_rule_id>
     <knowledge_feedback>Enacted TEST-TRUTH-001 and TEST-RACE-001; updated Gate 6 in workflows/code-review.xml to forbid declaring concurrency verified unless executed against real PostgreSQL or proven by concurrent Promise.all test assertions.</knowledge_feedback>
   </incident>
+  <incident id="INC-2026-004" severity="HIGH" date="2026-09-11">
+    <affected_project>Testing-Demo / Kantanda Evaluation</affected_project>
+    <symptom>Pull Request validated UUID idempotencyKey in Zod schema and stored it in database records, but issuing two requests with identical idempotencyKey deducted money twice (double-spending bug).</symptom>
+    <root_cause>Agent treated schema validation as task completion without implementing the actual business deduplication check (findByIdempotencyKey). The code review gate checked schema presence but lacked a behavioral test assertion verifying duplicate call deduplication.</root_cause>
+    <preventable_by_rule_id>BE-IDEM-001</preventable_by_rule_id>
+    <knowledge_feedback>Enacted BE-IDEM-001 and TEST-IDEM-001; established FW-IDEM-001 idempotency strategy framework; updated Gate 6 in workflows/code-review.xml to mandate duplicate-call behavioral test assertions.</knowledge_feedback>
+  </incident>
 </post_mortems_log>
