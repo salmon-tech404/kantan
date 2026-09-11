@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<elevation_tokens framework="TailwindCSS v4">
+  <token name="radius-sm" value="rounded-md (6px)" description="Input fields, buttons, badges"/>
+  <token name="radius-lg" value="rounded-xl (12px)" description="Cards, modal dialogs, popover dropdowns"/>
+  <token name="shadow-card" value="shadow-sm border border-zinc-200 dark:border-zinc-800" description="Default elevation for cards and tables"/>
+  <token name="shadow-modal" value="shadow-2xl border border-zinc-200 dark:border-zinc-800" description="Top-level dialogs and drawer panels"/>
+  <token name="z-dropdown" value="z-40" description="Dropdown menus, tooltips, select menus"/>
+  <token name="z-modal" value="z-50" description="Modal overlays, dialog backdrops, toast banners"/>
+</elevation_tokens>

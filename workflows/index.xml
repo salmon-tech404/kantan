@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<workflows_index title="Veltrix Standard Operating Workflows">
+<workflows_index title="Kantanda Standard Operating Workflows" version="2.0.0">
   <workflow id="api-creation" file="create-api.xml" description="Step-by-step workflow for implementing safe, production-grade REST APIs"/>
   <workflow id="component-creation" file="create-component.xml" description="Step-by-step workflow for building accessible, 5-state React components"/>
   <workflow id="code-review" file="code-review.xml" description="Mandatory quality gate checklist before committing or merging"/>
+  <workflow id="fix-security-vulnerability" file="fix-security-vulnerability.xml" description="Reproduce-and-patch workflow for security vulnerabilities (SSRF, BOLA, BFLA)"/>
+  <workflow id="database-migration" file="database-migration.xml" description="Zero-downtime expand-and-contract database migration workflow"/>
+  <workflow id="create-adr" file="create-adr.xml" description="Step-by-step workflow for drafting and ratifying Architectural Decision Records"/>
 </workflows_index>

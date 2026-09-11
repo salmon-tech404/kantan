@@ -1,34 +1,34 @@
-# 🧠 Kantanda Engineering Brain
+# 🧠 Kantanda 2.0 — The Living Cognitive Architecture
 
-An **LLM-Native Cognitive Architecture and Engineering Rule System** built from the exhaustive synthesis of **18 authoritative software engineering books**.
+An **LLM-Native Cognitive Architecture and Engineering Rule System** built from the exhaustive synthesis of **18 authoritative software engineering books**, evolved beyond static dogmatic rules into a **living system of trade-off frameworks, dialectical conflict resolutions, and automated tooling**.
 
-Designed specifically for autonomous Coding Agents (Cursor, Antigravity, Claude Code) to achieve deterministic rule compliance, progressive disclosure, zero hallucination, and post-generation self-auditing.
+Designed specifically for autonomous Coding Agents (Antigravity, Cursor, Claude Code) to achieve deterministic rule compliance, progressive disclosure, zero hallucination, and dual-gate self-auditing.
 
 ---
 
 ## 🏛️ The 6-Tier Architecture
 
 ```
-L0 ── SOURCE KNOWLEDGE (18 Books in D:\04-knowledge-base)
+L0 ── SOURCE KNOWLEDGE (18 Authoritative Books in D:\04-knowledge-base)
         │
-L1 ── DISTILLED CONCEPTS (Ontology & Vocabulary)
+L1 ── DISTILLED ONTOLOGY (glossary.xml & taxonomy.xml)
         │
-L2 ── ATOMIC RULES (Strict Schema with Verbatim Evidence Quotes)
+L2 ── ATOMIC RULES (89 XML Rules across Backend, Frontend, Common, Design System)
         │
-L3 ── DOMAINS & CATEGORIES (Architecture, Backend, Frontend, Security, RAG, Testing, UX/UI, DevOps)
+L3 ── DECISION FRAMEWORKS (Trade-off Matrices for State, Concurrency, Architecture)
         │
-L4 ── TASK ROUTER & RULE PACKS (Inheritance-based Bundles: destructive-dialog, rag-pipeline)
+L4 ── RESOLVED CONFLICTS LOG (Dialectical Trade-off Verdicts for Clashing Principles)
         │
-L5 ── PROJECT PROFILE (Veltrix-AI: Next.js 16, Express 5, Prisma 7, pgvector)
+L5 ── PROJECT PROFILES (Veltrix-AI, Market-Strategies, UI-Kit-Standard)
         │
-L6 ── CLOSED-LOOP VALIDATION (Pre-generation Rule Loading + Post-generation Self-Audit)
+L6 ── CLOSED-LOOP AUDIT (ESLint/Semgrep Tooling + Post-Mortem Incidents Feedback)
 ```
 
 ---
 
 ## 📚 The 18 Source Books Catalog
 
-All rules are 100% grounded in verifiable evidence quotes from the library at `D:\04-knowledge-base`:
+All rules and frameworks are 100% grounded in verifiable evidence quotes from the library at `D:\04-knowledge-base`:
 
 | Book ID | Title | Authors | Domain |
 | :--- | :--- | :--- | :--- |
@@ -53,51 +53,75 @@ All rules are 100% grounded in verifiable evidence quotes from the library at `D
 
 ---
 
-## 📁 Clean Repository Structure
+## 📁 Repository Structure
 
 ```text
 D:\10-kantanda\
 ├── backend/                       # Backend Atomic Rules (.rules.xml)
 │   ├── api/                       # REST endpoints, Envelopes, Zod Validation, Error codes
 │   ├── architecture/              # Modular Monolith, Layering, Bounded Contexts
-│   ├── database/                  # Anti-BOLA Queries, Atomic Transactions
+│   ├── database/                  # Anti-BOLA Queries, Atomic Transactions, Migrations
 │   ├── rag/                       # Chunking, pgvector Cosine Search, Citations
-│   ├── security/                  # JWT Dual Tokens, Magic Bytes, Prompt Injection Guards
+│   ├── security/                  # JWT Dual Tokens, SSRF Whitelist, Rate Limiting
 │   └── testing/                   # Unit AAA, Mocking Boundaries, PostgreSQL Rollback
 ├── frontend/                      # Frontend Atomic Rules (.rules.xml)
 │   ├── architecture/              # Server Components First, Colocation Boundaries
-│   ├── react/                     # Form Action State, API Integration
+│   ├── react/                     # Form Action State, API Integration, 5 Mandatory States
 │   ├── state/                     # Server State vs Client State Separation
 │   ├── typescript/                # Zero any policy, Discriminated Unions
-│   ├── ux-ui/                     # 5 Mandatory States, Focus Traps, Destructive Confirmation
+│   ├── ux-ui/                     # Focus Traps, Destructive Confirmation, Touch Targets
 │   └── testing/                   # Playwright Page Object Models
 ├── common/                        # Universal Standards (.rules.xml)
-│   ├── coding/                    # Single Responsibility, <= 40 lines, Guard clauses
+│   ├── coding/                    # Single Responsibility, <= 40 lines, Law of Demeter
 │   ├── documentation/             # TSDoc on public APIs, 'Why not What' comments
 │   ├── git/                       # Conventional Commits, 5-Point Code Review Gate
 │   └── security/                  # Zero-trust dependencies, Secret scanners
-├── design-system/                 # Design System & UI Specs
-│   ├── tokens/                    # Color scales (Tailwind v4), Typography scales
-│   └── components/                # Dialog touch targets, Modal focus rules
-├── workflows/                     # Standard Operating Workflows for Agents
+├── design-system/                 # Design System & UI Tokens (.rules.xml)
+│   ├── tokens/                    # Color scales (Tailwind v4), Typography, Spacing
+│   └── components/                # Button, Input, Table, Toast, Dialog specs
+├── frameworks/                    # Cognitive Decision Frameworks (Trade-off Matrices)
+│   ├── ddd-boundaries.xml         # CRUD vs Bounded Context vs Event-Driven
+│   ├── state-management.xml      # Server Component vs URL vs Context vs Zustand
+│   ├── database-concurrency.xml  # Optimistic vs Pessimistic vs Atomic Increment
+│   └── testing-strategy.xml      # Unit AAA vs Mock vs Testcontainers
+├── conflicts/                     # Resolved Dialectical Conflicts Log
+│   ├── postel-vs-strict-boundary.xml   # Strict API Boundary vs Robust UI Ingestion
+│   ├── dry-vs-bounded-context.xml     # Internal DRY vs Cross-Context Decoupling
+│   ├── immutability-vs-performance.xml # React Immutability vs HFT Mutable Ring Buffer
+│   └── hermetic-mock-vs-real-db.xml    # Pure Logic Mocking vs Real DB Rollback
+├── profiles/                      # Context-Aware Project Profiles
+│   ├── veltrix-ai.profile.xml          # Next.js 16 + Express 5 + Prisma 7 + pgvector
+│   ├── market-strategies.profile.xml   # Low-latency trading, in-place mutable ring buffers
+│   └── ui-kit-standard.profile.xml     # Tailwind CSS v4 + Radix Primitives + WCAG 2.2
+├── tooling/                       # Mechanized Linting & AST Static Enforcement
+│   ├── eslint/.eslintrc.js             # AST limits: <= 40 lines, no 'any', no fetch in JSX
+│   └── semgrep/kantanda-security.yml   # AST security: anti-SSRF, anti-BOLA tenant checks
+├── incidents/                     # Closed-Loop Feedback & Post-Mortem Feedback
+│   ├── template.xml                    # Incident Post-Mortem standard schema
+│   └── post-mortems.xml                # Historical production incidents & rule evolutions
+├── workflows/                     # Standard Operating Workflows
 │   ├── create-api.xml             # Step-by-step secure API implementation
 │   ├── create-component.xml       # Step-by-step 5-state React component workflow
+│   ├── database-migration.xml     # Zero-downtime database migration workflow
+│   ├── architecture-decision-record.xml # ADR creation workflow
 │   └── code-review.xml            # 5-Gate Review Checklist
 │
-├── index.xml                      # Global XML Knowledge Router
-├── taxonomy.xml                   # Task classification & domain mapping
-├── rule-priority.xml              # Matrix resolving rule conflicts (Security > Correctness > Clean Code)
-├── glossary.xml                   # Veltrix architectural domain terms
-├── AGENTS.md                      # AI Agent Operating Protocol
-└── _engine/                       # Internal infrastructure (sources catalog, audit manifest, compiler)
+├── index.xml                      # Global Cognitive Architecture Router
+├── taxonomy.xml                   # 25 Categorized Tasks with direct ruleset mappings
+├── rule-priority.xml              # Hierarchical Priority Matrix (Security > Correctness > Clean Code)
+├── glossary.xml                   # 22 Canonical Architectural Terms
+├── AGENTS.md                      # AI Agent 5-Step Operating Protocol
+└── _engine/                       # Core engine manifest & validation tooling
 ```
 
 ---
 
-## ⚡ How LLMs Use the Brain (The 4-Step Protocol)
+## ⚡ The 5-Step Agent Operating Protocol
 
-1. **Routing**: LLM reads `taxonomy.xml` & `index.xml` to match task intent to domains.
-2. **Selective Ingestion**: LLM loads only the 3-5 relevant `.rules.xml` files (~1,000 tokens), avoiding full-context bloat.
-3. **Execution**: LLM codes with strict adherence to `rule-priority.xml` (Rank 1: Security > Rank 2: Type Safety > Rank 3: Maintainability).
-4. **Self-Audit**: LLM runs pre-commit verification against `workflows/code-review.xml`.
-
+1. **Profile Detection**: Agent identifies project stack constraints (`profiles/`).
+2. **Framework Evaluation**: When facing architectural choices, agent analyzes trade-off matrices (`frameworks/`).
+3. **Selective Rule Ingestion**: Agent loads only 2-4 exact `.rules.xml` files mapped in `taxonomy.xml` + applies `conflicts/` verdicts.
+4. **Implementation**: Agent writes code adhering to `rule-priority.xml` (Rank 1: Security > Rank 2: Type Safety > Rank 3: Maintainability).
+5. **Dual-Gate Verification**:
+   - **Gate 1 (Mechanized):** Static AST verification via `tooling/` (ESLint/Semgrep).
+   - **Gate 2 (Semantic):** Agent self-audit via `workflows/code-review.xml` + check against `incidents/post-mortems.xml`.

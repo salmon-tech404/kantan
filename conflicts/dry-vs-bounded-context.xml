@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resolved_conflict id="CONF-002" title="DRY (Clean Code) vs Bounded Context Autonomy (Domain-Driven Design)">
+  <principle_a name="DRY (Don't Repeat Yourself)">Every piece of knowledge or code must have a single, unambiguous representation within a system.</principle_a>
+  <principle_b name="Bounded Context Autonomy (DDD)">Subsystems must maintain autonomous domain models to evolve independently without hidden coupling.</principle_b>
+  <resolution>SCOPE BOUNDARY RESOLUTION: Inside a single module/package, DRY is mandatory (no duplicate functions, no copy-pasted SQL). Across distinct Bounded Contexts (e.g. Ingestion Context vs Billing Context), DRY is intentionally suspended: duplicate DTOs and data models are preferred over creating a shared monolithic entity library that creates cross-team deployment coupling.</resolution>
+</resolved_conflict>

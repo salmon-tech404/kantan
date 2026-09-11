@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decision_framework id="FW-CON-001" title="Database Concurrency and Locking Strategy">
+  <context>Choosing between Optimistic Locking, Pessimistic Locking, and In-Memory Sequencing under concurrent writes.</context>
+  <decision_matrix>
+    <branch>
+      <condition>Low-to-medium contention mutations where conflicts are rare (e.g. editing document title, updating user profile)</condition>
+      <recommendation>Optimistic Concurrency Control (OCC) with version number</recommendation>
+      <trade_offs>Zero lock overhead on reads, high throughput; trade-off: client must handle retry on OCC conflict.</trade_offs>
+      <anti_pattern>Do not use SELECT ... FOR UPDATE on low-contention read-heavy endpoints.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>High-contention critical balance/inventory deductions where conflict probability is high (e.g. debiting user credits, reserving ticket)</condition>
+      <recommendation>Pessimistic Row-Level Locking (SELECT ... FOR UPDATE) inside short transaction</recommendation>
+      <trade_offs>Guarantees sequential correctness without retry storms; trade-off: locks database rows, latency spikes if transaction is slow.</trade_offs>
+      <anti_pattern>Never hold external network I/O calls (e.g. Stripe, LLM APIs) while holding a pessimistic row lock.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>Ultra-high-frequency real-time event streaming and orderbook matching (MarketStrategies trading terminal, 10,000+ ticks/sec)</condition>
+      <recommendation>Single-Threaded Event Loop with In-Memory Ring Buffer and Async DB Flush</recommendation>
+      <trade_offs>Zero database lock contention, sub-millisecond execution; trade-off: state must be reconstructed from WAL / Domain Events upon crash.</trade_offs>
+      <anti_pattern>Never route tick-by-tick trading updates through relational database row transactions.</anti_pattern>
+    </branch>
+  </decision_matrix>
+</decision_framework>

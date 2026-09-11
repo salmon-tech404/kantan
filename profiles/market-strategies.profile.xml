@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project_profile id="market-strategies" name="MarketStrategies Real-Time Trading Terminal" version="1.0.0">
+  <architecture>Event-Driven Real-Time Concurrency Architecture with WebSocket Feeds</architecture>
+  <tech_stack>
+    <tech category="Execution Engine">Node.js / C++ Addons or Rust Core, Lock-Free Ring Buffers</tech>
+    <tech category="Network Protocol">WebSockets with Binary Protocols / Protocol Buffers, Zero Reconnect Lag</tech>
+    <tech category="State Strategy">Mutable In-Memory Orderbook, Optimistic Matching, Async WAL Persistence</tech>
+    <tech category="Performance SLA">Order Routing Latency &lt; 10ms, Tick-to-Trade &lt; 2ms, Zero GC Pause spikes</tech>
+    <tech category="Safety &amp; Concurrency">Idempotent Order Clashing Guard, Mutex on Account Balances, Circuit Breaker</tech>
+  </tech_stack>
+  <active_rule_packs>
+    <pack>trading-concurrency-gate</pack>
+    <pack>websocket-reliability</pack>
+    <pack>circuit-breaker</pack>
+  </active_rule_packs>
+</project_profile>

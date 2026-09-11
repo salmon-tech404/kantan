@@ -1,37 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="e2e_rules" title="Ruleset: e2e_rules" total_rules="2">
-  <rule id="TEST-E2E-001" severity="must" domain="testing" category="e2e_testing" status="active">
+  
+  
+  <rule id="TEST-E2E-001" severity="must" domain="testing" category="e2e_testing" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Page Object Model (POM) for E2E Test Isolation</title>
+    
+    
     <statement>Playwright end-to-end tests must encapsulate web page locators and user interactions within Page Object Model (POM) classes.</statement>
+    
+    
     <rationale>Directly hardcoding CSS selectors across dozens of test specs causes widespread test suite breakages whenever UI class names or layouts change.</rationale>
+    
+    
     <implementation_guidance>Create LoginPage, ChatPage, and DocumentPage classes with semantic action methods (e.g. login(email, pass)).</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>await page.click('div.flex &gt; div &gt; input.sc-12'); await page.click('button.bg-blue-500');</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>await chatPage.sendMessage('What is the policy?'); expect(await chatPage.getAnswer()).toContain('Policy');</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-TEST-PLAYWRIGHT" book_title="Hands-On Automated Testing with Playwright" chapter="Chapter 4: Page Object Models" section="POM Architecture">
+        
+        
         <evidence_quote>Page Object Models reduce duplication and isolate test code from volatile UI structure. Tests interact with the page through meaningful business methods.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
-  <rule id="TEST-E2E-002" severity="must" domain="testing" category="e2e_testing" status="active">
+  
+  
+  <rule id="TEST-E2E-002" severity="must" domain="testing" category="e2e_testing" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Automated E2E Verification of the Critical RAG Journey</title>
+    
+    
     <statement>The CI quality gate must execute automated Playwright E2E tests verifying the core end-to-end journey: Login -&gt; Document Upload -&gt; Processing -&gt; Chat Response with Citation.</statement>
+    
+    
     <rationale>Unit tests and isolated API tests cannot detect browser rendering bugs, streaming connection drops, or CORS cookie authentication failures in production.</rationale>
+    
+    
     <implementation_guidance>Run Playwright against a staging environment before releasing to production.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>Deploying to production relying purely on unit tests with no browser integration check.</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>test('complete user journey: upload doc and ask question with citation', async ({ page }) =&gt; { ... });</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-TEST-PLAYWRIGHT" book_title="Hands-On Automated Testing with Playwright" chapter="Chapter 6: Continuous Testing and CI/CD" section="Critical User Path Testing">
+        
+        
         <evidence_quote>End-to-end testing must focus on high-value user journeys. Validating the core workflow from start to finish ensures critical business functionality remains operational.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

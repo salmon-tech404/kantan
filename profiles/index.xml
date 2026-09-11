@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<profiles_index title="Kantanda Project Profiles Index" version="2.0.0">
+  <profile id="veltrix-ai" file="veltrix-ai.profile.xml" description="RAG &amp; LLM Platform: Next.js 16, Express 5, Prisma 7, pgvector, Gemini API"/>
+  <profile id="market-strategies" file="market-strategies.profile.xml" description="Real-Time Trading Engine: WebSockets, Ring Buffers, Concurrency Mutex, &lt;10ms latency"/>
+  <profile id="ui-kit-standard" file="ui-kit-standard.profile.xml" description="Accessible UI Component Library: TailwindCSS v4, Headless Primitives, Radix UI"/>
+</profiles_index>

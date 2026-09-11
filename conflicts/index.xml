@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conflicts_index title="Kantanda Resolved Engineering Conflicts Log" version="2.0.0">
+  <conflict id="postel-vs-strict-boundary" file="postel-vs-strict-boundary.xml" description="Resolves Postel's Law (lenience) vs Secure APIs (strict additionalProperties: false)"/>
+  <conflict id="dry-vs-bounded-context" file="dry-vs-bounded-context.xml" description="Resolves Clean Code DRY vs DDD Bounded Context Autonomy and Duplication"/>
+  <conflict id="immutability-vs-performance" file="immutability-vs-performance.xml" description="Resolves Functional Immutability vs High-Frequency Trading Mutability"/>
+  <conflict id="hermetic-mock-vs-real-db" file="hermetic-mock-vs-real-db.xml" description="Resolves Unit Test Hermetic Isolation vs pgvector Vector Index Integration"/>
+</conflicts_index>

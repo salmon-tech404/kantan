@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project_profile id="veltrix-ai" name="Veltrix-AI Platform" version="1.0.0">
+  <architecture>Modular Monolith with RAG pipeline and Next.js App Router</architecture>
+  <tech_stack>
+    <tech category="Frontend">Next.js 16, React 19, TailwindCSS v4, Zustand, React Hook Form</tech>
+    <tech category="Backend">Node.js, Express 5, TypeScript 5.x</tech>
+    <tech category="Database &amp; ORM">PostgreSQL with pgvector extension, Prisma 7 ORM</tech>
+    <tech category="AI / LLM">Google Gemini 2.5 Flash / Pro, text-embedding-004, Vector Cosine Search (&lt;=&gt;)</tech>
+    <tech category="Security">JWT Dual Tokens, Zod schema validation, Magic bytes file check, Prompt injection guards</tech>
+  </tech_stack>
+  <active_rule_packs>
+    <pack>backend-api-base</pack>
+    <pack>rag-pipeline</pack>
+    <pack>destructive-dialog</pack>
+    <pack>frontend-base</pack>
+    <pack>code-review-gate</pack>
+  </active_rule_packs>
+</project_profile>

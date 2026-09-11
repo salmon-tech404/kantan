@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<incident_template version="1.0.0">
+  <field name="incident_id" description="Unique identifier, e.g. INC-2026-001"/>
+  <field name="date" description="ISO-8601 timestamp"/>
+  <field name="severity" description="CRITICAL | MAJOR | MINOR"/>
+  <field name="affected_project" description="Veltrix-AI | MarketStrategies | OmniStrans"/>
+  <field name="symptom" description="What broke in production from the user or system standpoint"/>
+  <field name="root_cause" description="Technical failure mechanism (e.g. unhandled race condition, BOLA leak, memory leak)"/>
+  <field name="preventable_by_rule_id" description="Existing Rule ID that should have prevented this, OR 'NEW_RULE_REQUIRED'"/>
+  <field name="action_taken" description="Immediate fix applied to production"/>
+  <field name="knowledge_feedback" description="Exact new Atomic Rule, Decision Framework branch, or Lint rule added to Kantanda"/>
+</incident_template>

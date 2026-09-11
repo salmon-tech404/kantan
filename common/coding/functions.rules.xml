@@ -1,38 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ruleset id="functions_rules" title="Ruleset: functions_rules" total_rules="2">
-  <rule id="CODE-FUN-001" severity="must" domain="common" category="coding" status="active">
+<ruleset id="functions_rules" title="Ruleset: functions_rules" total_rules="4">
+  
+  
+  
+  
+  
+  
+  <rule id="CODE-FUN-001" severity="must" domain="common" category="coding" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    
+    
+    
+    
     <title>Single Responsibility Principle (SRP) for Functions</title>
+    
+    
+    
+    
+    
+    
     <statement>Every function and method must perform a single, well-defined task and operate at a consistent level of abstraction.</statement>
+    
+    
+    
+    
+    
+    
     <rationale>Functions that mix business decisions with data formatting and low-level I/O are difficult to test, impossible to reuse, and attract bugs during changes.</rationale>
+    
+    
+    
+    
+    
+    
     <implementation_guidance>If a function contains 'and' in its informal description (e.g. 'parseAndSaveAndNotify'), split it into distinct composed functions.</implementation_guidance>
+    
+    
+    
+    
+    
+    
     <forbidden>
+      
+      
+      
+      
+      
+      
       <example>function process(buffer) { /* 200 lines doing regex, embedding, db calls, and emails */ }</example>
+      
+      
+      
+    
+    
+    
     </forbidden>
+    
+    
+    
+    
+    
+    
     <preferred>
+      
+      
+      
+      
+      
+      
       <example>const text = extractText(buffer); const chunks = splitIntoChunks(text); await storeChunks(chunks);</example>
+      
+      
+      
+    
+    
+    
     </preferred>
+    
+    
+    
+    
+    
+    
     <sources>
+      
+      
+      
+      
+      
+      
       <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 3: Functions" section="Do One Thing">
+        
+        
+        
+        
+        
+        
         <evidence_quote>Functions should do one thing. They should do it well. They should do it only. If a function does only those steps that are one level below the stated name, it does one thing.</evidence_quote>
+        
+        
+        
+      
+      
+      
       </source>
+      
+      
+      
+    
+    
+    
     </sources>
+    
+    
+    
+  
+  
+  
   </rule>
-  <rule id="CODE-FUN-002" severity="must" domain="common" category="coding" status="active">
+  
+  
+  
+  
+  
+  
+  <rule id="CODE-FUN-002" severity="must" domain="common" category="coding" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    
+    
+    
+    
     <title>Small Function Size and Guard Clause Early Returns</title>
+    
+    
+    
+    
+    
+    
     <statement>Functions should not exceed 40 lines of logic and must use guard clauses (early returns) to maintain a cyclomatic nesting depth of 3 or less.</statement>
+    
+    
+    
+    
+    
+    
     <rationale>Deeply nested if-else ladders increase cognitive complexity exponentially, leading to missed edge cases and maintenance dread.</rationale>
+    
+    
+    
+    
+    
+    
     <implementation_guidance>Check preconditions at the top of the function and return immediately on failure. Avoid else blocks after returns.</implementation_guidance>
+    
+    
+    
+    
+    
+    
     <forbidden>
+      
+      
+      
+      
+      
+      
       <example>if (user) { if (hasAccess(user)) { ... } else { ... } } else { ... } // Arrow anti-pattern</example>
+      
+      
+      
+    
+    
+    
     </forbidden>
+    
+    
+    
+    
+    
+    
     <preferred>
+      
+      
+      
+      
+      
+      
       <example>if (!user) return null;
 if (!hasAccess(user)) throw new ForbiddenError();
 return execute(user);</example>
+      
+      
+      
+    
+    
+    
+    </preferred>
+    
+    
+    
+    
+    
+    
+    <sources>
+      
+      
+      
+      
+      
+      
+      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 3: Functions" section="Small Functions and Blocks">
+        
+        
+        
+        
+        
+        
+        <evidence_quote>Functions should hardly ever be 20 lines long... the indent level of a function should not be greater than one or two.</evidence_quote>
+        
+        
+        
+      
+      
+      
+      </source>
+      
+      
+      
+    
+    
+    
+    </sources>
+    
+    
+    
+  
+    
+    
+    <adaptation_note>Clean Code Chapter 3 recommends functions rarely exceeding 20 lines. Kantanda purposefully extends this limit to 40 lines to pragmatically accommodate TypeScript parameter types, asynchronous await sequences, and robust error branching without excessive function fragmentation.</adaptation_note>
+    
+    
+  
+  
+  </rule>
+  
+  
+  
+
+
+  
+  <rule id="CODE-DEM-001" severity="must" domain="common" category="clean_code" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    <title>Law of Demeter (Principle of Least Knowledge)</title>
+    
+    
+    <statement>A method must only invoke methods on: (1) its own object, (2) objects passed in as arguments, (3) objects it instantiates, and (4) its direct collaborators. Deep chaining of accessors is strictly forbidden.</statement>
+    
+    
+    <rationale>Chaining accessors (e.g. req.user.profile.organization.settings.tier) leaks structural internals, creating high coupling where a schema change in an inner object breaks distant callers.</rationale>
+    
+    
+    <implementation_guidance>Follow the 'Tell, Don't Ask' principle: user.getOrganizationTier() rather than user.getOrganization().getSettings().getTier().</implementation_guidance>
+    
+    
+    <forbidden>
+      
+      
+      <example>const tier = req.user.profile.company.billing.subscription.planTier; // Deep train wreck chaining</example>
+      
+    
+    </forbidden>
+    
+    
+    <preferred>
+      
+      
+      <example>const tier = req.user.getBillingTier();</example>
+      
+    
+    </preferred>
+    
+    
+    <sources>
+      
+      
+      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 6: Objects and Data Structures" section="The Law of Demeter">
+        
+        
+        <evidence_quote>A module should not know about the innards of the objects it manipulates. A method f of a class C should only call the methods of C, objects created by f, or objects passed as arguments to f.</evidence_quote>
+        
+      
+      </source>
+      
+    
+    </sources>
+    
+  
+  </rule>
+  
+
+  <rule id="CODE-DES-001" severity="must" domain="common" category="clean_code" status="active" version="1.0.0" last_updated="2026-09-11">
+    <title>Kent Beck's Four Rules of Simple Design</title>
+    <statement>During code construction and refactoring, design choices must adhere to the four rules of simple design in strict priority order: 1. Runs all tests, 2. Contains no duplication, 3. Expresses intent clearly, 4. Minimizes elements.</statement>
+    <rationale>Over-engineering and speculative generality create unneeded abstraction layers before basic correctness and clarity are established.</rationale>
+    <implementation_guidance>Never introduce abstract factories or complex design patterns prematurely until duplicate code is observed and verified by passing unit tests.</implementation_guidance>
+    <forbidden>
+      <example>Introducing 6 abstract factory and strategy classes for a feature that currently has only 1 implementation.</example>
+    </forbidden>
+    <preferred>
+      <example>Keep implementation clean and direct; extract abstractions only when a second or third concrete variation emerges.</example>
     </preferred>
     <sources>
-      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 3: Functions" section="Small Functions and Blocks">
-        <evidence_quote>Functions should hardly ever be 20 lines long... the indent level of a function should not be greater than one or two.</evidence_quote>
+      <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 12: Emergence" section="The Four Rules of Simple Design">
+        <evidence_quote>According to Kent Beck, a design is 'simple' if it follows these rules: Runs all the tests; Contains no duplication; Expresses the intent of the programmer; Minimizes the number of classes and methods.</evidence_quote>
       </source>
     </sources>
   </rule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spacing_tokens framework="TailwindCSS v4" base_unit="4px">
+  <token name="space-xs" value="4px / p-1" description="Tight padding for badges, icon buttons, inline tags"/>
+  <token name="space-sm" value="8px / p-2" description="Compact gap between icon and label, form helper text"/>
+  <token name="space-md" value="16px / p-4" description="Standard card padding, form field gap"/>
+  <token name="space-lg" value="24px / p-6" description="Container padding, section separation on desktop"/>
+  <token name="space-xl" value="32px / p-8" description="Page margin gutter, modal window content padding"/>
+</spacing_tokens>

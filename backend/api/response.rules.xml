@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="response_rules" title="Ruleset: response_rules" total_rules="1">
-  <rule id="BE-API-002" severity="must" domain="backend" category="api_design" status="active">
+  
+  
+  <rule id="BE-API-002" severity="must" domain="backend" category="api_design" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Uniform API Response Envelope</title>
+    
+    
     <statement>All API endpoints must return a standardized JSON envelope with consistent success and error schemas.</statement>
+    
+    
     <rationale>Inconsistent response formats force frontend clients to implement disparate parsing logic, leading to runtime unhandled exceptions.</rationale>
+    
+    
     <implementation_guidance>Format success responses as { success: true, data: T } and error responses as { success: false, error: { code, message, details? } }.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>Returning a bare array [] on some routes and { result: ... } on other routes.</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>{ success: true, data: { id: &quot;123&quot;, name: &quot;Policy.pdf&quot; } }</example>
+      
+    
     </preferred>
+    
+    
     <sources>
-      <source book_id="BOOK-API-WEB" book_title="Design and Build Great Web APIs" chapter="Chapter 5: Building Web APIs" section="Representations and Envelopes">
-        <evidence_quote>A consistent message format across all API responses reduces client complexity and provides clear error semantics.</evidence_quote>
+      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 4: Input Validation and Output Sanitization" section="4.5 Structured API Responses">
+        <evidence_quote>A consistent response envelope ensures that clients reliably distinguish between data payloads and error payloads, preventing parsing ambiguities and unintended data leakage.</evidence_quote>
       </source>
     </sources>
   </rule>
+  
+
 </ruleset>

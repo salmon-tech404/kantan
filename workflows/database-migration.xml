@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="WF-DB-001" title="Zero-Downtime Database Migration Workflow">
+  <step sequence="1" name="Expand Phase (Backward Compatible)">Add new columns as nullable or with safe defaults. Never rename or delete active columns in a single migration.</step>
+  <step sequence="2" name="Dual-Write Transition">Update application code to write to both old and new columns while reading primarily from the old column, deployed without downtime.</step>
+  <step sequence="3" name="Data Backfill &amp; Verification">Run an idempotent background backfill script to populate new columns for historical records. Verify row counts and checksums.</step>
+  <step sequence="4" name="Contract Phase">Switch reads to the new column. In a subsequent release, remove deprecated column usage and safely drop the old column.</step>
+</workflow>

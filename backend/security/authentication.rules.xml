@@ -1,36 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ruleset id="authentication_rules" title="Ruleset: authentication_rules" total_rules="2">
-  <rule id="SEC-AUTH-001" severity="must" domain="security" category="authentication" status="active">
+<ruleset id="authentication_rules" title="Ruleset: authentication_rules" total_rules="4">
+  
+  
+  
+  
+  
+  
+  <rule id="SEC-AUTH-001" severity="must" domain="security" category="authentication" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    
+    
+    
+    
     <title>Dual-Token Architecture (15m Memory Access + 7d HttpOnly Cookie Refresh)</title>
+    
+    
+    
+    
+    
+    
     <statement>JWT access tokens must have a short lifespan (&lt;= 15 minutes) kept in memory, while refresh tokens (7 days) must be stored in an httpOnly, Secure, SameSite=Strict cookie.</statement>
+    
+    
+    
+    
+    
+    
     <rationale>Storing long-lived tokens in localStorage exposes them to XSS theft. Storing refresh tokens in httpOnly cookies prevents client-side script access.</rationale>
+    
+    
+    
+    
+    
+    
     <implementation_guidance>Set cookie with { httpOnly: true, secure: true, sameSite: 'strict', path: '/api/v1/auth' } on login.</implementation_guidance>
+    
+    
+    
+    
+    
+    
     <forbidden>
+      
+      
+      
+      
+      
+      
       <example>Returning both access and refresh tokens in JSON to be saved in window.localStorage.</example>
+      
+      
+      
+    
+    
+    
     </forbidden>
+    
+    
+    
+    
+    
+    
     <preferred>
+      
+      
+      
+      
+      
+      
       <example>res.cookie('refreshToken', token, { httpOnly: true, secure: true, sameSite: 'strict' });</example>
+      
+      
+      
+    
+    
+    
     </preferred>
+    
+    
+    
+    
+    
+    
     <sources>
+      
+      
+      
+      
+      
+      
       <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 5: Authentication and Authorization" section="Session Management and Cookies">
+        
+        
+        
+        
+        
+        
         <evidence_quote>Cookies containing session tokens must always have the httpOnly flag set to protect them from XSS theft, and the Secure flag to ensure transmission over HTTPS only.</evidence_quote>
+        
+        
+        
+      
+      
+      
       </source>
+      
+      
+      
+    
+    
+    
     </sources>
+    
+    
+    
+  
+  
+  
   </rule>
-  <rule id="SEC-AUTH-002" severity="must" domain="security" category="authentication" status="active">
+  
+  
+  
+  
+  
+  
+  <rule id="SEC-AUTH-002" severity="must" domain="security" category="authentication" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    
+    
+    
+    
     <title>Two-Factor Authentication (2FA) for Sensitive Administrative Operations</title>
+    
+    
+    
+    
+    
+    
     <statement>Security-sensitive operations (password reset, email change, organization deletion, API key generation) must require step-up MFA verification.</statement>
+    
+    
+    
+    
+    
+    
     <rationale>If a user's session token is compromised, step-up MFA prevents the attacker from permanently hijacking the account or deleting data.</rationale>
+    
+    
+    
+    
+    
+    
     <implementation_guidance>Verify TOTP code (otplib) or email OTP before committing credential mutations.</implementation_guidance>
+    
+    
+    
+    
+    
+    
     <forbidden>
+      
+      
+      
+      
+      
+      
       <example>Allowing password updates with only an active session and no re-authentication.</example>
+      
+      
+      
+    
+    
+    
+    </forbidden>
+    
+    
+    
+    
+    
+    
+    <preferred>
+      
+      
+      
+      
+      
+      
+      <example>if (!totp.verify({ token, secret })) throw new AppError(401, 'INVALID_2FA', 'Invalid 2FA code');</example>
+      
+      
+      
+    
+    
+    
+    </preferred>
+    
+    
+    
+    
+    
+    
+    <sources>
+      
+      
+      
+      
+      
+      
+      <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 5: Authentication and Authorization" section="Multi-Factor Authentication">
+        
+        
+        
+        
+        
+        
+        <evidence_quote>Multi-Factor Authentication (MFA) requires two or more distinct verification factors, significantly reducing the risk of unauthorized account takeovers.</evidence_quote>
+        
+        
+        
+      
+      
+      
+      </source>
+      
+      
+      
+    
+    
+    
+    </sources>
+    
+    
+    
+  
+  
+  
+  </rule>
+  
+  
+  
+
+
+  
+  <rule id="SEC-AUTH-003" severity="must" domain="security" category="authorization" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
+    <title>Mandatory Role and Permission Enforcement at Route Boundaries (Anti-BFLA)</title>
+    
+    
+    <statement>Every sensitive, administrative, or group-level endpoint must verify that the authenticated user possesses the specific required role or permission before invoking business logic.</statement>
+    
+    
+    <rationale>Verifying identity (Authentication) without verifying administrative privilege (Function-Level Authorization) allows standard users to invoke administrative actions simply by knowing the endpoint URL.</rationale>
+    
+    
+    <implementation_guidance>Attach an authorize(Role.ADMIN) or requirePermission('documents:delete') middleware immediately after the authentication middleware on protected route definitions.</implementation_guidance>
+    
+    
+    <forbidden>
+      
+      
+      <example>router.delete('/admin/users/:id', authenticateJwt, adminController.deleteUser); // Missing role check: any valid token can delete users</example>
+      
+    
+    </forbidden>
+    
+    
+    <preferred>
+      
+      
+      <example>router.delete('/admin/users/:id', authenticateJwt, requireRole('ADMIN'), adminController.deleteUser);</example>
+      
+    
+    </preferred>
+    
+    
+    <sources>
+      
+      
+      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 4: Input Validation and Access Control" section="4.3 Broken Function Level Authorization (BFLA)">
+        
+        
+        <evidence_quote>Function level authorization requires verifying that the user not only is logged in, but also holds explicit rights to execute the targeted operation.</evidence_quote>
+        
+      
+      </source>
+      
+    
+    </sources>
+    
+  
+  </rule>
+  
+
+  <rule id="SEC-JWT-001" severity="must" domain="security" category="authentication" status="active" version="1.0.0" last_updated="2026-09-11">
+    <title>Strict Verification of JWT Issuer, Audience, Expiry, and Algorithm</title>
+    <statement>JWT token verification must strictly enforce algorithm white-listing (rejecting 'none'), and validate 'iss' (issuer), 'aud' (audience), and 'exp' (expiration) claims.</statement>
+    <rationale>Permitting the 'none' algorithm allows signature bypass, and failing to verify audience allows tokens issued for external third-party services to be replayed against the internal API.</rationale>
+    <implementation_guidance>Use jwt.verify(token, secret, { algorithms: ['HS256'], issuer: 'veltrix-auth', audience: 'veltrix-api' }). Reject unverified tokens with HTTP 401.</implementation_guidance>
+    <forbidden>
+      <example>jwt.decode(token); // Or jwt.verify without specifying algorithms, vulnerable to algorithm substitution attacks</example>
     </forbidden>
     <preferred>
-      <example>if (!totp.verify({ token, secret })) throw new AppError(401, 'INVALID_2FA', 'Invalid 2FA code');</example>
+      <example>jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['HS256'], issuer: 'veltrix.ai', audience: 'veltrix.api' });</example>
     </preferred>
     <sources>
-      <source book_id="BOOK-SEC-ALICE-BOB" book_title="Alice and Bob Learn Application Security" chapter="Chapter 5: Authentication and Authorization" section="Multi-Factor Authentication">
-        <evidence_quote>Multi-Factor Authentication (MFA) requires two or more distinct verification factors, significantly reducing the risk of unauthorized account takeovers.</evidence_quote>
+      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 7: Tokens, Keys, and Identity Delegation" section="7.4 Cryptographic Token Validation Pitfalls">
+        <evidence_quote>Always specify the expected signature algorithms explicitly and validate all registered claims (iss, aud, exp) to prevent token spoofing and replay.</evidence_quote>
       </source>
     </sources>
   </rule>

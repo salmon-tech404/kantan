@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resolved_conflict id="CONF-003" title="React Functional Immutability vs Real-Time High-Throughput Mutability">
+  <principle_a name="Functional Immutability (React / Redux)">State objects must never be mutated in place; create new object copies to maintain pure render cycles.</principle_a>
+  <principle_b name="High-Throughput Performance (Trading Engine)">Creating millions of short-lived objects per second triggers Garbage Collection (GC) pauses, causing latency spikes that drop trade orders.</principle_b>
+  <resolution>PROFILE DOMAIN RESOLUTION: In Veltrix UI and general web components, Functional Immutability is strictly enforced. In MarketStrategies / Trading Execution Core, in-memory ring buffers and pre-allocated object pools use mutable in-place updates within synchronized thread-safe boundaries to achieve zero-allocation &lt;1ms latency.</resolution>
+</resolved_conflict>

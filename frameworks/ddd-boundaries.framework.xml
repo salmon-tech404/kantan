@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decision_framework id="FW-ARCH-001" title="Bounded Context Boundary &amp; Mapping Strategy">
+  <context>Determining how two distinct business domains should interact and whether to share code, models, or isolate with adapters.</context>
+  <decision_matrix>
+    <branch>
+      <condition>Both subsystems evolve together under the same team with identical business lifecycles</condition>
+      <recommendation>Shared Kernel</recommendation>
+      <trade_offs>Avoids mapper boilerplate; trade-off: changes in the shared kernel require synchronized releases between subsystems.</trade_offs>
+      <anti_pattern>Never use Shared Kernel across different teams or disparate deployment cadences.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>One subsystem depends on a foreign third-party API or legacy system with unstable/messy schemas</condition>
+      <recommendation>Anti-Corruption Layer (ACL)</recommendation>
+      <trade_offs>Insulates internal domain models completely from external churn; trade-off: requires maintenance of bi-directional DTO mappers.</trade_offs>
+      <anti_pattern>Do not expose foreign schema properties inside internal domain services.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>Subsystems belong to different business subdomains (e.g. Ingestion/RAG vs User Billing)</condition>
+      <recommendation>Autonomous Bounded Contexts with Duplicate DTOs</recommendation>
+      <trade_offs>Guarantees 100% independent deployability and zero hidden coupling; trade-off: violates strict DRY across domain boundaries.</trade_offs>
+      <anti_pattern>Do not attempt to unify User and Customer into a single monolithic entity class.</anti_pattern>
+    </branch>
+  </decision_matrix>
+</decision_framework>

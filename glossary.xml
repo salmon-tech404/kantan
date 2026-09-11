@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<glossary project="Veltrix-AI">
-  <term name="Bounded Context">A boundary within a domain where a particular domain model applies.</term>
-  <term name="BOLA">Broken Object Level Authorization: Failure to verify that the requesting user owns the targeted object.</term>
-  <term name="Discriminated Union">A TypeScript union of types with a common literal discriminator property ('status').</term>
-  <term name="Doherty Threshold">Productivity soars when human-computer interaction occurs under 400ms.</term>
-  <term name="Anti-Corruption Layer">An insulating boundary that translates foreign third-party schemas into internal domain models.</term>
-  <term name="Server Component">A React 19 component executed exclusively on the server, generating zero client JS bundle.</term>
+<glossary project="Kantanda" version="2.0.0" total_terms="22">
+  <term name="Bounded Context">A boundary within a domain where a particular domain model applies (Learning DDD).</term>
+  <term name="Anti-Corruption Layer (ACL)">An insulating translation layer that adapts foreign schemas and third-party APIs into clean internal domain models without leaking external concepts.</term>
+  <term name="Aggregate Root">The entry-point entity of a cluster of domain objects that encapsulates business logic and strictly enforces consistency invariants across all child entities.</term>
+  <term name="Invariant">A business rule, constraint, or condition that must always remain true and consistent within an aggregate at all times.</term>
+  <term name="Domain Event">A record of an important business event that has occurred in the domain, used to trigger eventual consistency and async processing pipelines.</term>
+  <term name="Outbox Pattern">A reliable messaging pattern where domain events are committed to a local database outbox table within the same transaction as business data mutations before being published to message brokers.</term>
+  <term name="BOLA (Broken Object Level Authorization)">OWASP API Security #1: A vulnerability where an API endpoint fails to verify that the requesting authenticated user owns the targeted object ID.</term>
+  <term name="BFLA (Broken Function Level Authorization)">OWASP API Security #5: A vulnerability where an API endpoint fails to enforce role-based or permission-based access controls on sensitive business actions or administrative routes.</term>
+  <term name="SSRF (Server-Side Request Forgery)">A critical vulnerability where an attacker manipulates a server into fetching unexpected internal or third-party resources, bypassing network firewalls and metadata services.</term>
+  <term name="Discriminated Union">A TypeScript union of object types sharing a common literal property ('type' or 'status') that enables exhaustive pattern matching and makes invalid states unrepresentable.</term>
+  <term name="Doherty Threshold">A UX performance principle stating that user productivity and engagement increase exponentially when computer-human response latency remains under 400 milliseconds.</term>
+  <term name="Hick's Law">A cognitive UX law stating that decision time increases logarithmically with the number and complexity of available choices.</term>
+  <term name="Miller's Law">A psychological observation that human working memory can hold approximately 7 (plus or minus 2) discrete chunks of information at one time.</term>
+  <term name="Postel's Law (Robustness Principle)">A fundamental software engineering guideline: 'Be conservative in what you do, be liberal in what you accept from others.'</term>
+  <term name="Hermetic Test">A deterministic, fully isolated test that executes with zero external network or database dependencies, ensuring zero flaky test runs.</term>
+  <term name="AAA Pattern (Arrange-Act-Assert)">A standard unit test structure that divides test execution into three clearly demarcated phases: setup (Arrange), execution (Act), and verification (Assert).</term>
+  <term name="F.I.R.S.T. Principles">The five criteria for effective unit tests: Fast, Independent, Repeatable, Self-Validating, and Timely.</term>
+  <term name="Test Double">An umbrella term for any object that replaces a production collaborator during testing (Fakes, Stubs, Mocks, Spies, and Dummies).</term>
+  <term name="Connascence">A software engineering metric measuring the degree of coupling between two components based on how a change to one necessitates a change to the other.</term>
+  <term name="Cohesion">The degree to which elements within a single module, class, or package work together to achieve a single, well-defined purpose (High Cohesion is preferred).</term>
+  <term name="Coupling">The degree of mutual interdependence between software modules (Low Coupling is preferred).</term>
+  <term name="Architectural Decision Record (ADR)">A concise document capturing an important architectural decision, including context, alternatives considered, decision rationale, and downstream consequences.</term>
 </glossary>

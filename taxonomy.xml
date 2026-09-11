@@ -1,56 +1,358 @@
 <?xml version="1.0" encoding="utf-8"?>
-<taxonomy version="1.0.0">
+<taxonomy version="2.0.0" total_tasks="25">
   <task id="backend.api.endpoint" domain="backend">
     <keywords>
       <keyword>api</keyword>
       <keyword>route</keyword>
       <keyword>controller</keyword>
       <keyword>endpoint</keyword>
+      <keyword>rest</keyword>
       <keyword>express</keyword>
     </keywords>
+    <rulesets>
+      <file>backend/api/rest.rules.xml</file>
+      <file>backend/api/response.rules.xml</file>
+      <file>backend/api/validation.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.api.validation" domain="backend">
+    <keywords>
+      <keyword>validate</keyword>
+      <keyword>validation</keyword>
+      <keyword>zod</keyword>
+      <keyword>schema</keyword>
+      <keyword>input</keyword>
+      <keyword>mass-assignment</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/api/validation.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.api.error" domain="backend">
+    <keywords>
+      <keyword>error</keyword>
+      <keyword>exception</keyword>
+      <keyword>fail</keyword>
+      <keyword>error-code</keyword>
+      <keyword>fault</keyword>
+      <keyword>http-error</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/api/error-response.rules.xml</file>
+      <file>backend/api/response.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.database.query" domain="backend">
+    <keywords>
+      <keyword>query</keyword>
+      <keyword>find</keyword>
+      <keyword>select</keyword>
+      <keyword>where</keyword>
+      <keyword>prisma</keyword>
+      <keyword>bola</keyword>
+      <keyword>idor</keyword>
+      <keyword>tenant</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/database/query.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.database.transaction" domain="backend">
+    <keywords>
+      <keyword>transaction</keyword>
+      <keyword>atomic</keyword>
+      <keyword>rollback</keyword>
+      <keyword>commit</keyword>
+      <keyword>$transaction</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/database/transaction.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.database.migration" domain="backend">
+    <keywords>
+      <keyword>migration</keyword>
+      <keyword>migrate</keyword>
+      <keyword>schema-change</keyword>
+      <keyword>alter-table</keyword>
+      <keyword>ddl</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/database/transaction.rules.xml</file>
+      <file>workflows/code-review.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.security.authentication" domain="backend">
+    <keywords>
+      <keyword>auth</keyword>
+      <keyword>authenticate</keyword>
+      <keyword>login</keyword>
+      <keyword>register</keyword>
+      <keyword>token</keyword>
+      <keyword>jwt</keyword>
+      <keyword>2fa</keyword>
+      <keyword>mfa</keyword>
+      <keyword>password</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/security/authentication.rules.xml</file>
+      <file>backend/security/logging.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.security.authorization" domain="backend">
+    <keywords>
+      <keyword>authorization</keyword>
+      <keyword>permission</keyword>
+      <keyword>role</keyword>
+      <keyword>rbac</keyword>
+      <keyword>bfla</keyword>
+      <keyword>admin-guard</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/security/authentication.rules.xml</file>
+      <file>backend/database/query.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.security.input" domain="backend">
+    <keywords>
+      <keyword>upload</keyword>
+      <keyword>file</keyword>
+      <keyword>magic-bytes</keyword>
+      <keyword>mime</keyword>
+      <keyword>ssrf</keyword>
+      <keyword>sanitize</keyword>
+      <keyword>payload</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/security/input-security.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.security.ai" domain="backend">
+    <keywords>
+      <keyword>prompt-injection</keyword>
+      <keyword>jailbreak</keyword>
+      <keyword>delimiter</keyword>
+      <keyword>system-prompt</keyword>
+      <keyword>indirect-injection</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/security/prompt-injection.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.rag.chunking" domain="backend">
+    <keywords>
+      <keyword>chunk</keyword>
+      <keyword>chunking</keyword>
+      <keyword>split</keyword>
+      <keyword>token-limit</keyword>
+      <keyword>overlap</keyword>
+      <keyword>recursive-chunking</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/rag/chunking.rules.xml</file>
+    </rulesets>
   </task>
   <task id="backend.rag.search" domain="backend">
     <keywords>
-      <keyword>rag</keyword>
       <keyword>vector</keyword>
       <keyword>embedding</keyword>
-      <keyword>chunk</keyword>
+      <keyword>pgvector</keyword>
       <keyword>similarity</keyword>
       <keyword>cosine</keyword>
+      <keyword>distance</keyword>
+      <keyword>knn</keyword>
     </keywords>
+    <rulesets>
+      <file>backend/rag/vector-search.rules.xml</file>
+      <file>backend/rag/citation.rules.xml</file>
+    </rulesets>
   </task>
-  <task id="backend.database.mutation" domain="backend">
+  <task id="backend.rag.retrieval" domain="backend">
     <keywords>
-      <keyword>database</keyword>
-      <keyword>prisma</keyword>
-      <keyword>transaction</keyword>
-      <keyword>migration</keyword>
-      <keyword>query</keyword>
+      <keyword>rag</keyword>
+      <keyword>retrieval</keyword>
+      <keyword>context</keyword>
+      <keyword>citation</keyword>
+      <keyword>prompt-assembly</keyword>
+      <keyword>rerank</keyword>
     </keywords>
+    <rulesets>
+      <file>backend/rag/retrieval.rules.xml</file>
+      <file>backend/rag/citation.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="backend.architecture.modularity" domain="backend">
+    <keywords>
+      <keyword>modular</keyword>
+      <keyword>monolith</keyword>
+      <keyword>layer</keyword>
+      <keyword>coupling</keyword>
+      <keyword>cohesion</keyword>
+      <keyword>boundary</keyword>
+      <keyword>ddd</keyword>
+      <keyword>bounded-context</keyword>
+      <keyword>acl</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/architecture/modularity.rules.xml</file>
+      <file>backend/architecture/layering.rules.xml</file>
+      <file>backend/architecture/ddd.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="frontend.architecture.boundary" domain="frontend">
+    <keywords>
+      <keyword>server-component</keyword>
+      <keyword>client-component</keyword>
+      <keyword>rsc</keyword>
+      <keyword>use-client</keyword>
+      <keyword>colocation</keyword>
+    </keywords>
+    <rulesets>
+      <file>frontend/architecture/server-client.rules.xml</file>
+      <file>frontend/architecture/component-boundary.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="frontend.typescript.types" domain="frontend">
+    <keywords>
+      <keyword>typescript</keyword>
+      <keyword>type</keyword>
+      <keyword>interface</keyword>
+      <keyword>any</keyword>
+      <keyword>discriminated-union</keyword>
+      <keyword>union</keyword>
+    </keywords>
+    <rulesets>
+      <file>frontend/typescript/typing.rules.xml</file>
+      <file>frontend/typescript/union.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="frontend.state.management" domain="frontend">
+    <keywords>
+      <keyword>state</keyword>
+      <keyword>zustand</keyword>
+      <keyword>server-state</keyword>
+      <keyword>url-state</keyword>
+      <keyword>client-state</keyword>
+      <keyword>tanstack-query</keyword>
+    </keywords>
+    <rulesets>
+      <file>frontend/state/state-boundary.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="frontend.form.input" domain="frontend">
+    <keywords>
+      <keyword>form</keyword>
+      <keyword>input</keyword>
+      <keyword>submit</keyword>
+      <keyword>react-hook-form</keyword>
+      <keyword>server-actions</keyword>
+      <keyword>useactionstate</keyword>
+    </keywords>
+    <rulesets>
+      <file>frontend/react/form.rules.xml</file>
+      <file>frontend/react/api.rules.xml</file>
+    </rulesets>
   </task>
   <task id="frontend.ui.dialog" domain="frontend">
     <keywords>
       <keyword>dialog</keyword>
       <keyword>modal</keyword>
       <keyword>popup</keyword>
-      <keyword>confirmation</keyword>
+      <keyword>destructive</keyword>
+      <keyword>delete-confirm</keyword>
+      <keyword>focus-trap</keyword>
+      <keyword>escape</keyword>
     </keywords>
+    <rulesets>
+      <file>frontend/ux-ui/dialog.rules.xml</file>
+      <file>design-system/components/dialog.rules.xml</file>
+    </rulesets>
   </task>
   <task id="frontend.ui.component" domain="frontend">
     <keywords>
       <keyword>component</keyword>
       <keyword>button</keyword>
       <keyword>card</keyword>
-      <keyword>table</keyword>
-      <keyword>layout</keyword>
+      <keyword>states</keyword>
+      <keyword>loading</keyword>
+      <keyword>empty</keyword>
+      <keyword>skeleton</keyword>
+      <keyword>doherty</keyword>
     </keywords>
+    <rulesets>
+      <file>frontend/ux-ui/states.rules.xml</file>
+      <file>frontend/ux-ui/accessibility.rules.xml</file>
+      <file>frontend/ux-ui/general.rules.xml</file>
+    </rulesets>
   </task>
-  <task id="frontend.form.input" domain="frontend">
+  <task id="testing.unit" domain="common">
     <keywords>
-      <keyword>form</keyword>
-      <keyword>input</keyword>
-      <keyword>validation</keyword>
-      <keyword>submit</keyword>
+      <keyword>test</keyword>
+      <keyword>unit-test</keyword>
+      <keyword>vitest</keyword>
+      <keyword>jest</keyword>
+      <keyword>aaa</keyword>
+      <keyword>arrange-act-assert</keyword>
+      <keyword>hermetic</keyword>
     </keywords>
+    <rulesets>
+      <file>backend/testing/unit.rules.xml</file>
+      <file>common/testing/testing-strategy.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="testing.mocking" domain="common">
+    <keywords>
+      <keyword>mock</keyword>
+      <keyword>stub</keyword>
+      <keyword>spy</keyword>
+      <keyword>test-double</keyword>
+      <keyword>dependency-injection</keyword>
+    </keywords>
+    <rulesets>
+      <file>backend/testing/mocking.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="testing.e2e" domain="frontend">
+    <keywords>
+      <keyword>playwright</keyword>
+      <keyword>e2e</keyword>
+      <keyword>browser-test</keyword>
+      <keyword>pom</keyword>
+      <keyword>page-object</keyword>
+    </keywords>
+    <rulesets>
+      <file>frontend/testing/e2e.rules.xml</file>
+    </rulesets>
+  </task>
+  <task id="governance.code_review" domain="common">
+    <keywords>
+      <keyword>review</keyword>
+      <keyword>pr</keyword>
+      <keyword>commit</keyword>
+      <keyword>conventional-commits</keyword>
+      <keyword>quality-gate</keyword>
+      <keyword>clean-code</keyword>
+      <keyword>adr</keyword>
+      <keyword>function-size</keyword>
+    </keywords>
+    <rulesets>
+      <file>common/coding/functions.rules.xml</file>
+      <file>common/git/commit.rules.xml</file>
+      <file>common/git/code-review.rules.xml</file>
+      <file>workflows/code-review.xml</file>
+    </rulesets>
+  </task>
+  <task id="architecture.adr" domain="architecture">
+    <keywords>
+      <keyword>adr</keyword>
+      <keyword>architectural-decision</keyword>
+      <keyword>decision-record</keyword>
+      <keyword>tradeoff</keyword>
+      <keyword>architecture-change</keyword>
+    </keywords>
+    <rulesets>
+      <file>common/documentation/adr.rules.xml</file>
+      <file>backend/architecture/modularity.rules.xml</file>
+    </rulesets>
   </task>
 </taxonomy>

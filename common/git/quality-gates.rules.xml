@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="quality-gates_rules" title="Ruleset: quality-gates_rules" total_rules="1">
-  <rule id="CD-GAT-001" severity="must" domain="devops" category="quality_gates" status="active">
+  
+  
+  <rule id="CD-GAT-001" severity="must" domain="devops" category="quality_gates" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Automated Pre-Commit and CI Quality Gates</title>
+    
+    
     <statement>Git commits and CI builds must enforce automated quality gates: ESLint (zero errors), TypeScript type-check (tsc --noEmit), and automated unit tests.</statement>
+    
+    
     <rationale>Allowing broken types or unlinted code into the main branch blocks team velocity and leads to broken deployments.</rationale>
+    
+    
     <implementation_guidance>Configure Husky with lint-staged for pre-commit. Configure GitHub Actions to run lint, typecheck, and test on every PR.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>Committing with git commit -n (--no-verify) to bypass failing type checks.</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>npx lint-staged (running eslint --fix &amp;&amp; prettier --write) on staged files prior to commit.</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-DEVOPS-CD" book_title="Continuous Delivery" chapter="Chapter 3: Continuous Integration" section="The Commit Stage">
+        
+        
         <evidence_quote>The commit stage should run fast automated unit tests, linting, and compile checks. If any check fails, the build fails immediately, giving instant feedback.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

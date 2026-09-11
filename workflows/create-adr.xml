@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="WF-ADR-001" title="Architectural Decision Record (ADR) Workflow">
+  <step sequence="1" name="Identify Architectural Need">Triggered when choosing between competing database engines, message queues, state management paradigms, or boundary protocol changes.</step>
+  <step sequence="2" name="Draft ADR Document">Create docs/adr/NNNN-title.md using the standard format: Status (Proposed/Accepted/Superseded), Context, Decision, and Consequences.</step>
+  <step sequence="3" name="Document Trade-Offs Honestly">Explicitly enumerate both positive consequences and negative trade-offs (e.g. increased operational complexity, learning curve).</step>
+  <step sequence="4" name="Team Review &amp; Acceptance">Submit ADR via PR for consensus before writing production code that depends on the decision (ARCH-ADR-001).</step>
+</workflow>

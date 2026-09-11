@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decision_framework id="FW-TST-001" title="Multi-Tier Testing Strategy Framework">
+  <context>Determining the testing depth, isolation boundary, and test double approach for a specific software component.</context>
+  <decision_matrix>
+    <branch>
+      <condition>Pure algorithmic calculations, data transformations, chunking logic, and business rules without external I/O</condition>
+      <recommendation>Isolated Unit Tests (AAA Pattern) with Zero Doubles</recommendation>
+      <trade_offs>Executes in microseconds, 100% deterministic, indestructible; trade-off: does not verify database connectivity.</trade_offs>
+      <anti_pattern>Never introduce Mocks or Stubs when testing pure functions.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>Services interacting with repositories, database queries, and data access layers</condition>
+      <recommendation>In-Memory Fake Repository for unit tests + Transaction Rollback Integration Tests for real queries</recommendation>
+      <trade_offs>Unit tests remain sub-millisecond fast using Fakes; integration tests verify SQL syntax against real PostgreSQL; trade-off: requires maintaining an in-memory fake implementation.</trade_offs>
+      <anti_pattern>Never mock database client methods like prisma.user.findFirst directly.</anti_pattern>
+    </branch>
+    <branch>
+      <condition>Critical end-to-end user journeys (authentication login, document upload and vector search)</condition>
+      <recommendation>Playwright E2E Tests with Page Object Model (POM)</recommendation>
+      <trade_offs>Validates full browser stack, CSS layout, and network integration; trade-off: slower execution, requires test database seeding.</trade_offs>
+      <anti_pattern>Do not write E2E tests for visual edge cases that can be verified via unit tests.</anti_pattern>
+    </branch>
+  </decision_matrix>
+</decision_framework>

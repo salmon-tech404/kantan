@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component_rules component="input" version="1.0.0">
+  <rule id="DS-INP-001" severity="must" title="Explicit Label and Accessible Error Association">Every form input must be linked to an explicit &lt;label htmlFor={id}&gt; and point to its validation error message via aria-describedby when invalid.</rule>
+  <rule id="DS-INP-002" severity="must" title="Persistent Focus Rings">Input focus rings must never be removed with outline-none without replacing with an accessible high-contrast focus ring (e.g. ring-2 ring-indigo-500).</rule>
+</component_rules>

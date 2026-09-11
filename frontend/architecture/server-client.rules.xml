@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="server-client_rules" title="Ruleset: server-client_rules" total_rules="1">
-  <rule id="FE-ARCH-001" severity="must" domain="frontend" category="architecture" status="active">
+  
+  
+  <rule id="FE-ARCH-001" severity="must" domain="frontend" category="architecture" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Server-First Components in Next.js App Router</title>
+    
+    
     <statement>React components in the Next.js App Router must be React Server Components (RSC) by default. The 'use client' directive must only be applied at leaf interactive components.</statement>
+    
+    
     <rationale>Applying 'use client' at high levels inflates JavaScript client bundles, degrades first contentful paint (FCP), and breaks server streaming advantages.</rationale>
+    
+    
     <implementation_guidance>Keep layouts and data-fetching pages as Server Components. Extract buttons, inputs, and modals into leaf Client Components.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>Placing 'use client' at the very top of app/documents/page.tsx.</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>page.tsx (Server Component fetching doc) -&gt; imports &lt;DocumentTable /&gt; (Server) -&gt; imports &lt;DeleteButton /&gt; ('use client')</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-FE-NEXTJS" book_title="Real-World Next.js - Second Edition" chapter="Chapter 3: Next.js Architecture and Rendering" section="Server vs Client Components">
+        
+        
         <evidence_quote>Default to Server Components to reduce bundle size and leverage streaming. Push the 'use client' boundary down to the leaves of your component tree.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

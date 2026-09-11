@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="comments_rules" title="Ruleset: comments_rules" total_rules="1">
-  <rule id="CODE-DOC-001" severity="must" domain="common" category="documentation" status="active">
+  
+  
+  <rule id="CODE-DOC-001" severity="must" domain="common" category="documentation" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Comments Must Explain 'Why', Never 'What'</title>
+    
+    
     <statement>In-line comments must explain technical rationale, non-obvious business requirements, or architectural trade-offs; they must never simply narrate the code.</statement>
+    
+    
     <rationale>Narrative comments (// increment i by 1) become outdated quickly, pollute the file, and distract from the actual logic.</rationale>
+    
+    
     <implementation_guidance>If code is not obvious, refactor variable and function names. Use comments only for rationale (e.g., // Overlap is set to 50 words to bridge cross-page sentences).</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>// Split the document into chunks
 const chunks = split(text);</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>// 50-word overlap bridges boundary sentences in legal contracts that span page breaks</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 4: Comments" section="Explain Yourself in Code">
+        
+        
         <evidence_quote>Comments do not make up for bad code. Clear and expressive code with few comments is far superior to a cluttered and complex code with lots of comments.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

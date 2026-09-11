@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="naming_rules" title="Ruleset: naming_rules" total_rules="1">
-  <rule id="CODE-NAM-001" severity="must" domain="common" category="coding" status="active">
+  
+  
+  <rule id="CODE-NAM-001" severity="must" domain="common" category="coding" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Intent-Revealing, Searchable Identifiers</title>
+    
+    
     <statement>Variable and function names must clearly express their intent, domain concept, and unit of measurement without requiring external comments.</statement>
+    
+    
     <rationale>Obscure names (e.g. data, temp, flag, d) force readers to scan entire files to deduce meaning, slowing down debugging and review.</rationale>
+    
+    
     <implementation_guidance>Include units in variable names where ambiguous (timeoutMs, maxFileSizeMb). Prefix booleans with is/has/can/should.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>const flag = false; const timeout = 5000; const data2 = getData();</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>const isIndexingCompleted = false; const maxTimeoutMs = 5000;</example>
+      
+    
     </preferred>
+    
+    
     <sources>
+      
+      
       <source book_id="BOOK-CLEAN-CODE" book_title="Clean Code: A Handbook of Agile Software Craftsmanship" chapter="Chapter 2: Meaningful Names" section="Use Intention-Revealing Names">
+        
+        
         <evidence_quote>The name of a variable, function, or class, should answer all the big questions. It should tell you why it exists, what it does, and how it is used.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

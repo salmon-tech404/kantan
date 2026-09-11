@@ -1,37 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ruleset id="error-response_rules" title="Ruleset: error-response_rules" total_rules="2">
-  <rule id="BE-ERR-001" severity="must" domain="backend" category="error_handling" status="active">
+  
+  
+  <rule id="BE-ERR-001" severity="must" domain="backend" category="error_handling" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Centralized AppError Exception Hierarchy</title>
+    
+    
     <statement>Application errors must instantiate or subclass AppError, encapsulating HTTP statusCode, a machine-readable errorCode, and a safe client message.</statement>
+    
+    
     <rationale>Throwing raw Error instances or string literals causes unhandled promise rejections, inconsistent error responses, and potential server crashes.</rationale>
+    
+    
     <implementation_guidance>Throw new AppError(404, 'DOCUMENT_NOT_FOUND', 'Document does not exist'). Let Global Error Middleware catch and format it.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>throw new Error('something went wrong'); // Missing HTTP status and machine error code</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>throw new AppError(404, 'NOT_FOUND', 'Knowledge Base not found');</example>
+      
+    
     </preferred>
+    
+    
     <sources>
-      <source book_id="BOOK-API-WEB" book_title="Design and Build Great Web APIs" chapter="Chapter 6: Error Handling" section="Standardizing Errors">
+      
+      
+      <source book_id="BOOK-API-WEB" book_title="Design and Build Great Web APIs" chapter="Chapter 9: Handling Errors" section="Structured Problem Representations">
+        
+        
         <evidence_quote>Errors should be treated as first-class citizens. Creating structured error representations with HTTP status codes makes debugging predictable.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
-  <rule id="BE-ERR-002" severity="must_not" domain="backend" category="error_handling" status="active">
+  
+  
+  <rule id="BE-ERR-002" severity="must_not" domain="backend" category="error_handling" status="active" version="1.0.0" last_updated="2026-09-11">
+    
+    
     <title>Never Expose Internal Stack Traces in Production</title>
+    
+    
     <statement>Production error responses must never expose raw stack traces, SQL queries, database column names, or internal file system paths.</statement>
+    
+    
     <rationale>Stack traces expose internal architecture, database schema, and third-party library versions to potential attackers, facilitating exploit discovery.</rationale>
+    
+    
     <implementation_guidance>In production (NODE_ENV === 'production'), log the full stack trace to Winston and return a generic 500 error payload.</implementation_guidance>
+    
+    
     <forbidden>
+      
+      
       <example>{ error: err.stack, sql: 'SELECT * FROM users WHERE...' }</example>
+      
+    
     </forbidden>
+    
+    
     <preferred>
+      
+      
       <example>{ success: false, error: { code: 'INTERNAL_SERVER_ERROR', message: 'An unexpected error occurred.' } }</example>
+      
+    
     </preferred>
+    
+    
     <sources>
-      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 7: Error Handling and Information Leakage" section="Stack Traces in Responses">
+      
+      
+      <source book_id="BOOK-API-SECURE" book_title="Secure APIs" chapter="Chapter 5: API Misconfigurations and Information Leakage" section="5.3 Stack Traces and Verbose Errors">
+        
+        
         <evidence_quote>Stack traces and internal system details must never be returned to the client in production. They provide adversaries with valuable reconnaissance information.</evidence_quote>
+        
+      
       </source>
+      
+    
     </sources>
+    
+  
   </rule>
+  
+
 </ruleset>

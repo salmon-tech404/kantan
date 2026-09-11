@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component_rules component="button" version="1.0.0">
+  <rule id="DS-BTN-001" severity="must" title="Button Loading State and Disabled Accessibility">While an asynchronous action is executing, buttons must display an inline spinner, maintain their exact layout width to prevent content reflow, and have aria-busy='true' and disabled attributes set.</rule>
+  <rule id="DS-BTN-002" severity="must" title="Minimum 48x48px Touch Target">All interactive buttons on mobile and desktop viewports must maintain a touch/click target of at least 48x48px per Fitts's Law (UI-LAW-002).</rule>
+  <rule id="DS-BTN-003" severity="must" title="Single Primary Button Per Visual Area">Each view or modal card must present at most one primary solid-color call-to-action button to eliminate visual competition and cognitive friction.</rule>
+</component_rules>
