@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<index title="Veltrix Backend Engineering Standards Index">
-  <entry id="architecture" path="architecture/modularity.rules.xml" description="Modular Monolith, Cohesion, Coupling, and DDD"/>
-  <entry id="api" path="api/rest.rules.xml" description="REST API endpoints, Envelope responses, Zod validation, and Error codes"/>
-  <entry id="database" path="database/query.rules.xml" description="Prisma query scoping (Anti-BOLA) and Atomic Transactions"/>
-  <entry id="rag" path="rag/vector-search.rules.xml" description="Chunking, Embedding coordinates, pgvector Cosine similarity, and Citations"/>
-  <entry id="security" path="security/authentication.rules.xml" description="JWT dual tokens, 2FA, Magic bytes upload checks, and Prompt injection guards"/>
-  <entry id="testing" path="testing/integration.rules.xml" description="Integration testing with real PostgreSQL rollback and hermetic unit tests"/>
-</index>

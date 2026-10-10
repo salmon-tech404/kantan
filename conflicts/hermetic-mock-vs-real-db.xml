@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resolved_conflict id="CONF-004" title="Hermetic In-Memory Isolation vs Real Database Vector Search Fidelity">
-  <principle_a name="Hermetic Unit Testing">Tests must run with zero external network or database dependencies to remain sub-millisecond fast and 100% deterministic.</principle_a>
-  <principle_b name="Real Vector Search Fidelity">In-memory database mocks do not support PostgreSQL pgvector Cosine similarity operators (&lt;=&gt;), leading to false-positive test passes.</principle_b>
-  <resolution>PYRAMID DIVISION RESOLUTION: Business domain logic, prompt formatting, and chunking algorithms use 100% Hermetic Unit Tests with in-memory Fakes. Repository vector queries are tested exclusively in Integration Tests executing against a real PostgreSQL instance with pgvector extension enabled, wrapped in transaction rollback.</resolution>
-</resolved_conflict>

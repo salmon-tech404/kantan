@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resolved_conflict id="CONF-001" title="Postel's Law (Lenience) vs Secure APIs (Strict Validation)">
-  <principle_a name="Postel's Law (Robustness Principle)">Be liberal in what you accept: tolerate varied inputs, strip whitespace, coerce formats to provide seamless UX.</principle_a>
-  <principle_b name="Secure APIs (Zero Trust / Anti-Mass-Assignment)">Strict schema validation: reject any unrecognized parameters, strip extraneous fields, prevent injection.</principle_b>
-  <resolution>LAYERED CONTEXTUAL RESOLUTION: Postel's Law applies exclusively at the Frontend UI Client layer (e.g. forgiving date formats, trimming leading spaces). Secure APIs Strict Validation applies categorically at the Backend API Gateway / Controller boundary (Zod strict mode, rejecting unknown body parameters). The API boundary must never be lenient.</resolution>
-</resolved_conflict>

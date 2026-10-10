@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<frameworks_index title="Kantanda Architectural Decision Frameworks" version="2.1.0">
-  <framework id="ddd-boundaries" file="ddd-boundaries.framework.xml" description="Decision matrix for identifying Bounded Contexts vs Shared Kernels vs Anti-Corruption Layers"/>
-  <framework id="state-management" file="state-management.framework.xml" description="Trade-off matrix for selecting URL Params vs Server State vs Zustand UI vs React Hook Form"/>
-  <framework id="database-concurrency" file="database-concurrency.framework.xml" description="Trade-off evaluation: Optimistic Locking vs Pessimistic Locking vs Ring Buffers"/>
-  <framework id="testing-strategy" file="testing-strategy.framework.xml" description="When to write pure Unit Tests vs In-Memory Fakes vs Hermetic Integration Tests"/>
-  <framework id="idempotency-strategies" file="idempotency-strategies.framework.xml" description="Architectural choices: Redis TTL vs Database Transaction Unique Constraints vs Outbox Pattern"/>
-</frameworks_index>

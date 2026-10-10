@@ -1,11 +1,12 @@
 {
   "system": "Kantanda Engineering Brain",
-  "version": "2.2.0",
-  "status": "VERIFIED_TRUTHFUL",
-  "last_audit": "2026-09-11",
+  "version": "2.3.0",
+  "status": "AUDITED_18_18_WITH_REMEDIATION_IN_PROGRESS",
+  "last_audit": "2026-09-15",
+  "audit_note": "Full 18/18-book citation audit completed 2026-09-13 (see Claude outputs/KANTANDA_AUDIT_DOSSIER-1.md): 53.7% of the 82 book-cited rules had citation defects (misattributed chapter, fabricated section, or content contradicting the source). Citation corrections for those findings were applied 2026-09-13, and Tier-1/2/3 gap-analysis follow-up (17 new rules covering previously-uncited gaps: OOM streaming ingestion, SSRF allowlist/IMDSv2, multi-layer Anti-BOLA, LLM code sandboxing, ML model deserialization safety, Ports & Adapters, EventStorming, HNSW tuning, embedding versioning, Object Mother/Humble Object, class-level SRP, Three Laws of TDD, Playwright visual regression/storageState/axe-core/Faker.js, and feature-poisoning resistance) was added 2026-09-15. Status is not 'fully verified': FW-IDEM-001 (idempotency framework) and 2 items (model-extraction defense, F.I.R.S.T. properties) remain either unsourced-by-design or intentionally not added due to lack of genuine textual support in the 18-book corpus.",
   "total_books_referenced": 18,
   "audit_summary": {
-    "total_rules": 93,
+    "total_rules": 110,
     "total_taxonomy_tasks": 28,
     "total_decision_frameworks": 5,
     "total_resolved_conflicts": 5,

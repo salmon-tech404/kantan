@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<index title="Veltrix Frontend Engineering Standards Index">
-  <entry id="architecture" path="architecture/server-client.rules.xml" description="Server-First Components in Next.js App Router &amp; Colocation"/>
-  <entry id="typescript" path="typescript/typing.rules.xml" description="Zero-any policy, Discriminated Unions for states"/>
-  <entry id="state" path="state/state-boundary.rules.xml" description="State separation: Server state vs Zustand UI state vs React Hook Form"/>
-  <entry id="ux-ui" path="ux-ui/states.rules.xml" description="5 Mandatory UI states, Modal Focus Traps, Destructive Confirmations, and No Emojis"/>
-  <entry id="testing" path="testing/e2e.rules.xml" description="Playwright Page Object Models and Critical Journey Automation"/>
-</index>

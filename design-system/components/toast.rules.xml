@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component_rules component="toast" version="1.0.0">
-  <rule id="DS-TST-001" severity="must" title="Accessible Toast Notifications with Polite Live Regions">Non-critical status notifications must use aria-live='polite' and role='status'; critical errors must use role='alert'. Auto-dismissing toasts must pause on hover and keyboard focus.</rule>
-</component_rules>

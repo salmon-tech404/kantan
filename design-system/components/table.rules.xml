@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component_rules component="table" version="1.0.0">
-  <rule id="DS-TBL-001" severity="must" title="Virtualization for Datasets Exceeding 100 Rows">Tables or document lists displaying more than 100 entries must implement windowed virtualization via TanStack Virtual to cap DOM node count and preserve 60 FPS scrolling.</rule>
-  <rule id="DS-TBL-002" severity="must" title="Empty and Zero-Search States">Tables must render dedicated EmptyState graphics and actionable reset filters when row collections are empty or search results return zero items.</rule>
-</component_rules>

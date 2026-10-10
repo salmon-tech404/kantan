@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component_rules component="dialog" framework="Radix UI / Tailwind">
-
-  <rule id="DS-DLG-001" severity="must" title="Destructive Dialog Typing" version="1.0.0" last_updated="2026-09-11">Destructive actions (delete, reset) must require typing resource name or explicit 2-step confirmation (UI-DLG-001).</rule>
-  <rule id="DS-DLG-002" severity="must" title="Focus Trap &amp; Escape Close" version="1.0.0" last_updated="2026-09-11">Modals must trap focus internally and close on Escape key press (UI-DLG-002).</rule>
-  <rule id="DS-DLG-003" severity="must" title="Touch Target Size" version="1.0.0" last_updated="2026-09-11">All clickable buttons inside dialogs must have a minimum touch target of 48x48px (UI-LAW-002).</rule>
-</component_rules>

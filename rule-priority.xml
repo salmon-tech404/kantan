@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rule_priority_matrix version="1.0.0">
-  <priority rank="1" category="security" description="Security rules (Anti-BOLA, Prompt Injection, Input Validation) supersede all others."/>
-  <priority rank="2" category="correctness" description="Type safety (No any, Discriminated Unions) and Transaction integrity supersede performance."/>
-  <priority rank="3" category="maintainability" description="Clean Code (SRP, Low coupling, High cohesion) supersedes micro-optimizations."/>
-  <priority rank="4" category="performance" description="Optimizations apply only with demonstrable latency profiling (Doherty threshold, Indexes)."/>
-</rule_priority_matrix>

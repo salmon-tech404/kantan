@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<index title="Veltrix Common Engineering Standards Index">
-  <entry id="coding" path="coding/functions.rules.xml" description="Single Responsibility Principle, Max 40 lines, Early return guard clauses"/>
-  <entry id="naming" path="coding/naming.rules.xml" description="Intent-revealing, searchable identifiers"/>
-  <entry id="documentation" path="documentation/tsdoc.rules.xml" description="TSDoc comments on public APIs, Comments explain Why not What"/>
-  <entry id="adr" path="documentation/adr.rules.xml" description="Architectural Decision Records (ADR) for structural changes"/>
-  <entry id="git" path="git/commit.rules.xml" description="Conventional Commits v1.0.0 and 5-Point Code Review Checklist"/>
-</index>

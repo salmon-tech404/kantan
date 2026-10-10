@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<color_tokens framework="TailwindCSS v4">
-  <token category="neutral" value="slate" description="50 to 950 for backgrounds, cards, borders, and body text"/>
-  <token category="brand-primary" value="indigo-600" description="Primary call-to-action buttons, active navigation markers"/>
-  <token category="semantic-success" value="emerald-600" description="Positive states, successful transactions, online badges"/>
-  <token category="semantic-warning" value="amber-500" description="Non-blocking alerts, rate limit threshold warnings"/>
-  <token category="semantic-danger" value="rose-600" description="Destructive actions, critical errors, validation failures"/>
-</color_tokens>

@@ -1,0 +1,31 @@
+rules:
+  - id: kantanda-prisma-missing-user-scope
+    message: "BE-DB-001: Potential BOLA vulnerability. Database query on user-owned model missing userId or tenantId scoping filter."
+    languages: [typescript, javascript]
+    severity: ERROR
+    pattern-either:
+      - pattern: prisma.$MODEL.findUnique({ where: { id: $ID } })
+      - pattern: prisma.$MODEL.update({ where: { id: $ID }, data: $DATA })
+      - pattern: prisma.$MODEL.delete({ where: { id: $ID } })
+
+  - id: kantanda-unvalidated-file-upload
+    message: "SEC-UPL-001: File upload detected without magic bytes header inspection. Inspect buffer signature before processing."
+    languages: [typescript, javascript]
+    severity: WARNING
+    patterns:
+      - pattern: req.file
+      - pattern-not-inside: |
+          ...
+          $BUF.subarray(0, 4)
+          ...
+
+  - id: kantanda-direct-fetch-in-component
+    message: "FE-API-001: Do not call fetch/axios directly inside UI components. Encapsulate inside a typed API service function."
+    languages: [typescript, javascript]
+    severity: ERROR
+    patterns:
+      - pattern-either:
+          - pattern: fetch(...)
+          - pattern: axios.$METHOD(...)
+      - pattern-inside: |
+          export const $COMP = (...) => { ... }
