@@ -4,32 +4,35 @@ A set of rules applying to every project. Each project declares its parameters a
 
 ## How to Use (for AI Agents)
 
-**Load only files for the area you're working on.** Don't read the entire tree. Don't read `_system/`.
+**Load only files for the area you're working on.** Don't read the entire tree. Don't read `maintainers/` (audit and build history, not rules).
 
 | Task | Read File |
 |---|---|
-| Components, screens, styling, a11y | `frontend/ui.md` |
-| Frontend structure, RSC, state, API calls | `frontend/architecture.md` |
-| Frontend TypeScript types | `frontend/typescript.md` |
-| Rendering AI/user-generated content | `frontend/security.md` |
-| E2E tests, Playwright | `frontend/testing.md` |
-| Endpoints, request validation, errors, responses | `backend/api.md` |
-| Database queries, transactions, data access control | `backend/database.md` |
-| Authentication, file upload, SSRF, rate limiting, logging, prompt injection | `backend/security.md` |
-| Backend unit/integration tests | `backend/testing.md` |
-| Module boundaries, layers, DDD, hexagonal | `architecture/boundaries.md` |
-| Architectural decisions to document | `architecture/adr.md` |
-| Naming, function length, formatting | `common/code-style.md` |
-| Commits, CI gates, dependencies | `common/git.md` |
-| Testing strategy, concurrent tests, idempotency | `common/testing.md` |
-| Writing READMEs, technical guides, user documentation | `guide/writing.md` |
+| Components, screens, styling, a11y | `rules/frontend/ui.md` |
+| Frontend structure, RSC, state, API calls | `rules/frontend/architecture.md` |
+| Frontend TypeScript types | `rules/frontend/typescript.md` |
+| Rendering AI/user-generated content | `rules/frontend/security.md` |
+| E2E tests, Playwright | `rules/frontend/testing.md` |
+| Endpoints, request validation, errors, responses | `rules/backend/api.md` |
+| Database queries, transactions, data access control | `rules/backend/database.md` |
+| Authentication, file upload, SSRF, rate limiting, logging, prompt injection | `rules/backend/security.md` |
+| Backend unit/integration tests | `rules/backend/testing.md` |
+| Which architecture style applies, `applies_to` | `rules/architecture/styles.md` |
+| Module boundaries, layers, DDD, hexagonal | `rules/architecture/boundaries.md` |
+| Architectural decisions to document | `rules/architecture/adr.md` |
+| Naming, function length, formatting | `rules/common/code-style.md` |
+| Commits, CI gates, dependencies | `rules/common/git.md` |
+| Testing strategy, concurrent tests, idempotency | `rules/common/testing.md` |
+| Writing READMEs, technical guides, user documentation | `rules/guide/writing.md` |
 
 **Optional Modules** — read only when project profile enables:
 
 | Module | File | Enable When |
 |---|---|---|
-| `rag-pgvector` | `backend/rag.md` | Project uses RAG, embeddings, vector search |
-| `python-ml` | `backend/ml.md` | Project loads ML models or trains classifiers |
+| `rag-pgvector` | `rules/backend/rag.md` | Project uses RAG, embeddings, vector search |
+| `python-ml` | `rules/backend/ml.md` | Project loads ML models or trains classifiers |
+
+**Architecture rules are style-scoped.** Each `ARCH-*` / `FE-ARCH-*` rule carries `applies_to`. Read and enforce it only when the project profile declares that style (`any` always applies). A rule whose `applies_to` is not declared does not apply, and its absence is never a violation. See `rules/architecture/styles.md`.
 
 Files `*/guidance.md` are **recommendations, not rules**. Read only when considering design trade-offs, not as grounds for blocking.
 
@@ -57,7 +60,7 @@ Projects **cannot override** these rules, even if the profile declares an except
 `BE-DB-001` `SEC-BOLA-002` `BE-VAL-001` `BE-VAL-002` `SEC-AUTH-003` `SEC-JWT-001`
 `SEC-UPL-001` `SEC-SSRF-001` `SEC-RAT-001` `SEC-LOG-001` `BE-ERR-002` `SWE-DEP-001`
 
-Overriding other rules must be explicitly declared in the project profile: **rule ID + what changed + why**. No declaration means the common rule still applies.
+Overriding other rules must be explicitly declared in the project profile: **rule ID + what changed + why + expires (date) + approved by**. No declaration means the common rule still applies. An override past its `expires` date no longer counts; the rule applies again.
 
 ## Three Enforcement Tiers
 
@@ -73,7 +76,7 @@ T3 rules are **never** grounds to reject a change.
 
 ## Project Parameters to Declare
 
-Rules containing `{{...}}` require projects to fill in values. See `_system/profile-template.md`.
+Rules containing `{{...}}` require projects to fill in values. See `setup/profile-template.md`.
 
 | Parameter | Used By |
 |---|---|
