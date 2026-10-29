@@ -26,5 +26,5 @@ desktop.ini
 *.tmp
 .cache/
 
-#claude
-Claude outputs
+#claude audit reports (local only)
+maintainers/audit/reports/
